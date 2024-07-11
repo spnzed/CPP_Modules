@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:35:53 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/06/05 15:34:47 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/06/10 12:02:01 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	Contact::setContact() {
 }
 
 void	Contact::showContact() {
-	std::cout << "First Name: " << firstName << std::endl;
+	std::cout << "First Name: " << getFirstName() << std::endl;
 	std::cout << "Last Name: " << lastName << std::endl;
 	std::cout << "Nickname: " << nickname << std::endl;
 	std::cout << "Phone Number: " << phoneNumber << std::endl;
