@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:35:53 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/06/10 12:02:01 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/08/05 18:54:44 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,29 @@ Contact::Contact() {}
 
 void	Contact::setContact() {
 	std::cout << "Enter First Name: ";
+	if (!std::getline(std::cin, firstName) || std::cin.eof()) {
+		std::cout << std::endl;
+		exit(1);}
 	std::getline(std::cin, firstName);
 	std::cout << "Enter Last Name: ";
+	if (!std::getline(std::cin, firstName) || std::cin.eof()) {
+		std::cout << std::endl;
+		exit(1);}
 	std::getline(std::cin, lastName);
 	std::cout << "Enter Nickname: ";
+	if (!std::getline(std::cin, firstName) || std::cin.eof()) {
+		std::cout << std::endl;
+		exit(1);}
 	std::getline(std::cin, nickname);
 	std::cout << "Enter Phone Number: ";
+	if (!std::getline(std::cin, firstName) || std::cin.eof()) {
+		std::cout << std::endl;
+		exit(1);}
 	std::getline(std::cin, phoneNumber);
 	std::cout << "Enter Darkest Secret: ";
+	if (!std::getline(std::cin, firstName) || std::cin.eof()) {
+		std::cout << std::endl;
+		exit(1);}
 	std::getline(std::cin, darkestSecret);
 	empty = false;
 }

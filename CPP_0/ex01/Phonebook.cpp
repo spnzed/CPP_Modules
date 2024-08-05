@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:24:26 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/06/07 13:42:20 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/08/05 18:52:21 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,22 @@ void PhoneBook::searchContact() {
 			std::cout << "|" << std::endl;
 		}
 	}
-	int j;
-	std::cout << "Enter index to display contact details: ";
-	std::cin >> j;
-	if (j >= 0 && j < 8) {
-		displayContact(j);
+	
+	while (!std::cin.eof())
+	{
+		std::cout << "Enter index to display contact details: ";
+		if (std::getline(std::cin, str) && str != "")
+		{
+			// if (str == "EXIT") {exit(1);}
+			if ((str[0] < '1' || str[0] > '8') || str.length() != 1 || str == "") {std::cout << "Invalid index.\n";}
+			else if (str[0] >= '1' && str[0] <= '8') {
+				displayContact(atoi(str.c_str()));
+				break;}
+		}
 	}
-	else
-		std::cout << "Invalid index.\n";
+	if (std::cin.eof()) {
+		std::cout << std::endl;
+		exit(1);}
 }
 
 void PhoneBook::displayContact(int i) {

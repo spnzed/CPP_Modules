@@ -6,38 +6,35 @@
 #    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/06/05 15:08:17 by ffornes-         ###   ########.fr        #
+#    Updated: 2024/08/05 17:29:46 by aaronespino      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #			VARIABLES
 
-NAME	= awesome_phonebook					# NAME define el nombre del ejecutable final.
+NAME	= awesome_phonebook
 
-SRC		= Contact.cpp Phonebook.cpp main.cpp		# SRC almacena el nombre del archivo fuente, Contact.cpp Phonebook.cpp.
-OBJ		= $(SRC:.cpp=.o)				# OBJ es la variable que contiene el nombre del archivo objeto.
-CC		= c++						# CC define el compilador
-RM		= rm -f						# RM define el comando para eliminar archivos, usando 'rm -f'.
+SRC		= Contact.cpp Phonebook.cpp main.cpp
+OBJ		= $(SRC:.cpp=.o)
+CC		= c++
+RM		= rm -f
 
-FLAGS	= -Wall -Wextra -Werror -std=c++98			# CPPFLAGS contiene los flags para el compilador.
+FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 #			RULES
 
-all		:	$(NAME)									# La regla 'all' es la regla por defecto
+all		:	$(NAME)
 
-$(NAME)	:	$(OBJ)									# Para crear el ejecutable (NAME), necesitamos el archivo objeto (OBJ).
+$(NAME)	:	$(OBJ)
 	$(CC) $(FLAGS) -I ./ -o $(NAME) $(OBJ)
 
-# Compilador (CC) Flags (FLAGS) para compilar el archivo objeto (OBJ) en el ejecutable (NAME).
-
-clean:												# Elimina obj
+clean:
 	$(RM) $(OBJ)
 
-fclean:	clean											# Elimina obj y ejecutable
+fclean:	clean
 	$(RM) $(NAME)
 
-re: fclean $(NAME)									# Elimina obj y ejecutable, recompila
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re
-# .PHONY se usa para declarar que las reglas no son archivos reales.
-# Esto evita conflictos si existen archivos con los mismos nombres que las reglas.
+
