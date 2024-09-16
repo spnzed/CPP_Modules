@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
+#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/08/05 17:29:46 by aaronespino      ###   ########.fr        #
+#    Updated: 2024/09/14 14:37:15 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,43 @@
 
 NAME	= awesome_phonebook
 
-SRC		= Contact.cpp Phonebook.cpp main.cpp
-OBJ		= $(SRC:.cpp=.o)
-CC		= c++
-RM		= rm -f
+SRC_DIR = src/
 
-FLAGS	= -Wall -Wextra -Werror -std=c++98
+SRC = Contact.cpp PhoneBook.cpp main.cpp utils.cpp
+
+OBJ_DIR = obj/
+
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
+DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
+
+CC		= c++
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic -MMD -fsanitize=address -g
+RM		= rm -f
+INCLUDE = -I ./
 
 #			RULES
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJ)
-	$(CC) $(FLAGS) -I ./ -o $(NAME) $(OBJ)
+$(NAME)	:	$(OBJ_DIR) $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJ) -o $@
+
+$(OBJ_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp Makefile
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(DEP)
 
 fclean:	clean
+	$(RM) -r $(OBJ_DIR)
 	$(RM) $(NAME)
 
 re: fclean $(NAME)
+
+-include $(DEP)
 
 .PHONY: all clean fclean re
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
+#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/01 22:27:56 by aaronespino       #+#    #+#              #
-#    Updated: 2024/09/01 22:28:55 by aaronespino      ###   ########.fr        #
+#    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
+#    Updated: 2024/09/16 13:05:25 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,42 @@
 
 NAME	= zombie
 
-SRC		= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
-OBJ		= $(SRC:.cpp=.o)
-CC		= c++
-RM		= rm -f
+SRC_DIR = src/
 
-FLAGS	= -Wall -Wextra -Werror -std=c++98
+SRC = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+
+OBJ_DIR = obj/
+
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
+DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
+
+CC		= c++
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -fsanitize=address -g
+RM		= rm -f
+INCLUDE = -I ./
 
 #			RULES
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJ)
-	$(CC) $(FLAGS) -I ./ -o $(NAME) $(OBJ)
+$(NAME)	:	$(OBJ_DIR) $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDE) $(OBJ) -o $@
+
+$(OBJ_DIR):
+	mkdir -p $@
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp Makefile
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(DEP)
 
 fclean:	clean
+	$(RM) -r $(OBJ_DIR)
 	$(RM) $(NAME)
 
 re: fclean $(NAME)
 
-.PHONY: all clean fclean re
+-include $(DEP)
 
+.PHONY: all clean fclean re
