@@ -6,12 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:09:03 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/14 19:17:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:15:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Fixed.hpp"
 #include <iostream>
+#include <math.h>
 
 // CONSTRUCTORS
 
@@ -28,11 +29,11 @@ Fixed::~Fixed (void) {
     // std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed (const int& a) : _value(a * 256) {
+Fixed::Fixed (const int& a) : _value(round(a * 256)) {
     // std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed (const float& a) : _value(a * 256.0f) {
+Fixed::Fixed (const float& a) : _value(round(a * 256.0f)) {
     // std::cout << "Float constructor called" << std::endl;
 }
 

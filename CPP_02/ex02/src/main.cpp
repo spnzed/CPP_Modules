@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/16 15:09:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:17:19 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main (void) {
     Fixed const b( Fixed( 5.05f ) * Fixed ( 2 ) );
     Fixed c( 2 );
 
-    Fixed const d( Fixed( 2.01f ) * Fixed ( 2 ) );
+    Fixed const d( Fixed( 2.1f ) * Fixed ( 2 ) );
     Fixed const f( Fixed( 21.21f ) * Fixed ( 2 ) );
 
 
@@ -90,7 +90,7 @@ int main (void) {
     
 //     std::cout << b << std::endl;
     
-//     std::cout << a / 0 << std::endl;
+//     // std::cout << a / 0 << std::endl;
 
 //     std::cout << Fixed::max( a, b ) << std::endl;
 
