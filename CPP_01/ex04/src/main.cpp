@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 00:22:03 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/14 17:10:43 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:20:26 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ int clone (std::string filename, std::string s1, std::string s2) {
 
     std::ifstream file(filename.c_str());
     if (!file.is_open()) {
-        std::cerr << "Error: No se puede abrir el archivo." << std::endl;
+        std::cerr << "Error: Cannot open file." << std::endl;
         return 1;
     }
 
     std::ofstream new_file((filename + ".replace").c_str());
     if (!new_file.is_open()) {
-        std::cerr << "Error: No se puede abrir el archivo de salida para modificación." << std::endl;
+        std::cerr << "Error: Cannot open output file for modification." << std::endl;
+        file.close();
         return 1;
     }
 
