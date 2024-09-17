@@ -6,13 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:09:03 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/17 16:14:45 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:46:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Fixed.hpp"
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 Fixed::Fixed (void) : _value(0) {
     std::cout << "Default constructor called" << std::endl;
