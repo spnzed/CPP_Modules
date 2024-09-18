@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/08 18:04:12 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/18 11:30:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "../inc/ClapTrap.hpp"
 #include <iostream>
 #include <string>
 
 int	main()
 {
-	ScavTrap	r("ffornes-");
-	ScavTrap	h;
+	ClapTrap	r("ffornes-");
+	ClapTrap	h("aaespino");
 
 	std::cout << std::endl;
-	r.attack(h.getName());
-	h.takeDamage(r.getAttack());
+	r.attack("aaespino");
+	h.takeDamage(r.getAttackDamage());
 	std::cout << std::endl;
 	h.beRepaired(5);
 	std::cout << std::endl;
-	h.attack(r.getName());
-	r.takeDamage(h.getAttack());
+	h.attack("ffornes-");
+	r.takeDamage(h.getAttackDamage());
 	std::cout << std::endl;
 	r.beRepaired(5);
 	std::cout << std::endl;
-	h.attack(r.getName());
-	r.takeDamage(h.getAttack());
+	h.attack("ffornes-");
+	r.takeDamage(h.getAttackDamage());
 	std::cout << std::endl;
-	r.attack(h.getName());
-	h.takeDamage(r.getAttack());
+	r.attack("aaespino");
+	h.takeDamage(r.getAttackDamage());
 	std::cout << std::endl;
 	
 	return (0);

@@ -3,39 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/08 18:04:12 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/18 12:18:59 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "../inc/ScavTrap.hpp"
+
 #include <iostream>
 #include <string>
 
 int	main()
 {
-	ClapTrap	r("ffornes-");
-	ClapTrap	h("aaespino");
+	ScavTrap	named("ffornes-");
+	ScavTrap	unnamed;
 
 	std::cout << std::endl;
-	r.attack("aaespino");
-	h.takeDamage(r.getAttack());
+	named.attack(unnamed.getName());
+	unnamed.takeDamage(named.getAttackDamage());
 	std::cout << std::endl;
-	h.beRepaired(5);
+	unnamed.beRepaired(5);
 	std::cout << std::endl;
-	h.attack("ffornes-");
-	r.takeDamage(h.getAttack());
+	unnamed.attack(named.getName());
+	named.takeDamage(unnamed.getAttackDamage());
 	std::cout << std::endl;
-	r.beRepaired(5);
+	named.beRepaired(5);
 	std::cout << std::endl;
-	h.attack("ffornes-");
-	r.takeDamage(h.getAttack());
+	unnamed.attack(named.getName());
+	named.takeDamage(unnamed.getAttackDamage());
 	std::cout << std::endl;
-	r.attack("aaespino");
-	h.takeDamage(r.getAttack());
+	named.attack(unnamed.getName());
+	unnamed.takeDamage(named.getAttackDamage());
 	std::cout << std::endl;
-	
+
+	named.guardGate();
+	unnamed.guardGate();
+	std::cout << std::endl;
+
 	return (0);
 }
