@@ -6,13 +6,13 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:09:03 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/18 17:28:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/18 19:09:52 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Fixed.hpp"
 #include <iostream>
-#include <math.h>
+#include <cmath>
 
 // CONSTRUCTORS
 
