@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:09:03 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/17 17:46:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/18 17:07:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ Fixed::~Fixed (void) {
     // std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed (const int& a) : _value(round(a * 256)) {
+Fixed::Fixed (const int& a) : _value(roundf(a * 256)) {
     // std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed (const float& a) : _value(round(a * 256.0f)) {
+Fixed::Fixed (const float& a) : _value(roundf(a * 256.0f)) {
     // std::cout << "Float constructor called" << std::endl;
 }
 
@@ -69,43 +69,37 @@ Fixed &Fixed::operator=(const Fixed& a) {
 int Fixed::operator>(const Fixed& a) {
     if (this->getRawBits() > a.getRawBits())
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
 int Fixed::operator<(const Fixed& a) {
     if (this->getRawBits() < a.getRawBits())
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
 int Fixed::operator>=(const Fixed& a) {
     if (this->getRawBits() >= a.getRawBits())
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
 int Fixed::operator<=(const Fixed& a) {
     if (this->getRawBits() <= a.getRawBits())
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
 int Fixed::operator==(const Fixed& a) {
     if (this->getRawBits() == a.getRawBits())
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
 int Fixed::operator!=(const Fixed& a) {
     if (this->getRawBits() != a.getRawBits())
         return 1;
-    else
-        return 0;
+    return 0;
 }
 
 // INCREMENT/DECREMENT OPERATORS
@@ -146,7 +140,7 @@ Fixed   &Fixed::min(Fixed &a, Fixed &b) {
     return b;
 }
 
-Fixed   &Fixed::min(const Fixed &a, const Fixed &b) {
+const Fixed   &Fixed::min(const Fixed &a, const Fixed &b) {
     if (a.getRawBits() < b.getRawBits())
         return (Fixed&)a;
     return (Fixed&)b;
@@ -158,7 +152,7 @@ Fixed   &Fixed::max(Fixed &a, Fixed &b) {
     return b;
 }
 
-Fixed   &Fixed::max(const Fixed &a, const Fixed &b) {
+const Fixed   &Fixed::max(const Fixed &a, const Fixed &b) {
     if (a.getRawBits() > b.getRawBits())
         return (Fixed&)a;
     return (Fixed&)b;

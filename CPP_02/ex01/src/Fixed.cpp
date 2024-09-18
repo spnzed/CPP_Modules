@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:09:03 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/17 17:46:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:51:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ Fixed::Fixed (void) : _value(0) {
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed (const int& a) : _value(round(a * 256)) {
+Fixed::Fixed (const int& a) : _value(roundf(a * 256)) {
     std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed (const float& a) : _value(round(a * 256.0f)) {
+Fixed::Fixed (const float& a) : _value(roundf(a * 256.0f)) {
     std::cout << "Float constructor called" << std::endl;
 }
 
