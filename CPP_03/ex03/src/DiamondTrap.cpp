@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:03:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/19 12:37:16 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 18:44:09 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ DiamondTrap::DiamondTrap(void) : _name("DiamondTrap_default") {
     this->FragTrap::_hit_points = FragTrap::_hit_points;
     this->FragTrap::_attack_damage = FragTrap::_attack_damage;
 
-    this->ScavTrap::_energy_points = FragTrap::_energy_points;
+    this->ScavTrap::_energy_points = ScavTrap::_energy_points;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : _name(name) {
@@ -28,7 +28,7 @@ DiamondTrap::DiamondTrap(std::string name) : _name(name) {
     this->FragTrap::_hit_points = FragTrap::_hit_points;
     this->FragTrap::_attack_damage = FragTrap::_attack_damage;
 
-    this->ScavTrap::_energy_points = FragTrap::_energy_points;
+    this->ScavTrap::_energy_points = ScavTrap::_energy_points;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& a) {
@@ -44,7 +44,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& a) {
         this->_name = a._name;
         this->FragTrap::_hit_points = a.FragTrap::_hit_points;
         this->FragTrap::_attack_damage = a.FragTrap::_attack_damage;
-        this->ScavTrap::_energy_points = a.FragTrap::_energy_points;
+        this->ScavTrap::_energy_points = a.ScavTrap::_energy_points;
     }
     return *this;
 }
