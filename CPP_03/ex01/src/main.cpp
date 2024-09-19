@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/18 12:18:59 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:44:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	main()
 {
-	ScavTrap	named("ffornes-");
+	ScavTrap	named("Scavy");
 	ScavTrap	unnamed;
 
 	std::cout << std::endl;

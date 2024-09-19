@@ -6,9 +6,12 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:22 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/18 12:18:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:49:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
 #include <string>
 #include <iostream>
@@ -39,3 +42,5 @@ class ClapTrap {
         int         getEnergyPoints(void);
         int         getAttackDamage(void);
 };
+
+#endif

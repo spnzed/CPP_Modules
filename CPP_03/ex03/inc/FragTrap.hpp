@@ -6,9 +6,12 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:22 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 12:29:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:49:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include "../inc/ScavTrap.hpp"
 
@@ -28,3 +31,4 @@ class FragTrap : virtual public ClapTrap {
         void    highFivesGuys(void);
 };
 
+#endif

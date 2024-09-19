@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/18 11:30:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:36:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 
 int	main()
 {
-	ClapTrap	r("ffornes-");
-	ClapTrap	h("aaespino");
+	ClapTrap	r("Clappy 1");
+	ClapTrap	h("Clappy 2");
 
 	std::cout << std::endl;
-	r.attack("aaespino");
+	r.attack("Clappy 2");
 	h.takeDamage(r.getAttackDamage());
 	std::cout << std::endl;
 	h.beRepaired(5);
 	std::cout << std::endl;
-	h.attack("ffornes-");
+	h.attack("Clappy 1");
 	r.takeDamage(h.getAttackDamage());
 	std::cout << std::endl;
 	r.beRepaired(5);
 	std::cout << std::endl;
-	h.attack("ffornes-");
+	h.attack("Clappy 1");
 	r.takeDamage(h.getAttackDamage());
 	std::cout << std::endl;
-	r.attack("aaespino");
+	r.attack("Clappy 2");
 	h.takeDamage(r.getAttackDamage());
 	std::cout << std::endl;
-	
+
 	return (0);
 }
