@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 12:43:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:03:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-
+#include "../inc/Cat.hpp"
 #include <iostream>
 #include <string>
 
-int main() {
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+Cat::Cat(void) : _type("Cat_default") {
+    std::cout << "Cat Construcor Called" << std::endl;
+}
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
-    meta->makeSound();
+Cat::Cat(const Cat &a) {
+    *this = a;
+}
 
-    delete meta;
-    delete i;
-    delete j;
+Cat::~Cat(void) {
+    std::cout << "Cat Destructor Called" << std::endl;    
+}
 
-    return 0;
+Cat& Cat::operator=(const Cat &a) {
+    if (this != &a) {
+        this->_type = a._type;
+    }
+    return *this;
+}
+
+void Cat::makeSound (void) const {
+    std::cout << "Meow" << std::endl;
+}
+
+std::string Cat::getType (void) const {
+    return this->_type;
 }

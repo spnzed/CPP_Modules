@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 12:44:32 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:07:29 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../inc/Animal.hpp"
+#include "../inc/Brain.hpp"
 #include <string>
 
-#pragma once
-
-class Animal {
+class Cat : public Animal {
     private:
         std::string _type;
+        Brain       *brain;
     public:
-        Animal(void);  
-        virtual ~Animal(void);
+        Cat(void); 
+        Cat(const Cat &a);
+        ~Cat(void);
 
-        virtual void        makeSound(void) const;
-        virtual std::string getType(void) const;
+        Cat &operator=(const Cat &a);
+
+        void        makeSound(void) const;
+        std::string getType(void)const;
 };

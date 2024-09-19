@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 11:28:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:04:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "../inc/Animal.hpp"
 #include <iostream>
 #include <string>
 
-Cat::Cat(void) : _type("Cat_default") {
-    std::cout << "Cat Construcor Called" << std::endl;
-    this->brain = new Brain;
+Animal::Animal(void) : _type("Animal_default") {
+    std::cout << "Animal Construcor Called" << std::endl;
 }
 
-Cat::~Cat(void) {
-    std::cout << "Cat Destructor Called" << std::endl;    
-    delete this->brain;
+Animal::Animal(const Animal &a) {
+    *this = a;
 }
 
-void Cat::makeSound (void) const {
-    std::cout << "Meow" << std::endl;
+Animal::~Animal(void) {
+    std::cout << "Animal Destructor Called" << std::endl;  
 }
 
-std::string Cat::getType (void) const {
+Animal& Animal::operator=(const Animal &a) {
+    if (this != &a) {
+        this->_type = a._type;
+    }
+    return *this;
+}
+
+void Animal::makeSound (void) const {
+    std::cout << "ASDF IM AN ANIMAL PLEASE GIVE ME A SPECIE TO LIVE BY" << std::endl;
+}
+
+std::string Animal::getType(void) const {
     return this->_type;
 }

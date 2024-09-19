@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 11:16:02 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:07:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
-
-#include <iostream>
+#include "../inc/Animal.hpp"
+#include "../inc/Brain.hpp"
 #include <string>
 
-int main() {
-    const Animal* Farm[10];
+class Dog : public Animal {
+    private:
+        std::string _type;
+        Brain       *brain;
+    public:
+        Dog(void); 
+        Dog(const Dog &a);
+        ~Dog(void);
 
-    for (int i = 0; i < 5 ; i++) {
-        Farm[i] = new Dog();
-    }
+        Dog &operator=(const Dog &a);
 
-    for (int i = 5; i < 10 ; i++) {
-        Farm[i] = new Cat();
-    }
-
-    for (int i = 0; i < 10 ; i++) {
-        delete Farm[i];
-    }
-
-    return 0;
-}
+        void        makeSound(void) const;
+        std::string getType(void)const;
+};

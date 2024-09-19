@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 10:56:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:05:40 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "../inc/Cat.hpp"
 #include <iostream>
 #include <string>
 
-Dog::Dog(void) : _type("Dog_default") {
-    std::cout << "Dog Construcor Called" << std::endl;
+Cat::Cat(void) : _type("Cat_default") {
+    std::cout << "Cat Construcor Called" << std::endl;
+    this->brain = new Brain;
 }
 
-Dog::~Dog(void) {
-    std::cout << "Dog Destructor Called" << std::endl;    
+Cat::Cat(const Cat &a) {
+    *this = a;
 }
 
-void Dog::makeSound (void) const{
-    std::cout << "Woof, woof" << std::endl;
+Cat::~Cat(void) {
+    std::cout << "Cat Destructor Called" << std::endl;    
+    delete this->brain;
 }
 
-std::string Dog::getType (void) const {
+Cat& Cat::operator=(const Cat &a) {
+    if (this != &a) {
+        this->_type = a._type;
+        this->brain = a.brain;
+    }
+    return *this;
+}
+
+void Cat::makeSound (void) const {
+    std::cout << "Meow" << std::endl;
+}
+
+std::string Cat::getType (void) const {
     return this->_type;
 }

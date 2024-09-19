@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 12:36:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:06:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "../inc/Dog.hpp"
 #include <iostream>
 #include <string>
 
-Animal::Animal(void) : _type("Animal_default") {
-    std::cout << "Animal Construcor Called" << std::endl;
+Dog::Dog(void) : _type("Dog_default") {
+    std::cout << "Dog Construcor Called" << std::endl;
+    this->brain = new Brain;
 }
 
-Animal::~Animal(void) {
-    std::cout << "Animal Destructor Called" << std::endl;  
+Dog::Dog(const Dog &a) {
+    *this = a;
 }
 
-void Animal::makeSound (void) const {
-    std::cout << "ASDF IM AN ANIMAL PLEASE GIVE ME A SPECIE TO LIVE BY" << std::endl;
+Dog::~Dog(void) {
+    std::cout << "Dog Destructor Called" << std::endl;    
+    delete this->brain;
 }
 
-std::string Animal::getType(void) const {
+Dog& Dog::operator=(const Dog &a) {
+    if (this != &a) {
+        this->_type = a._type;
+        this->brain = a.brain;
+    }
+    return *this;
+}
+
+void Dog::makeSound (void) const{
+    std::cout << "Woof, woof" << std::endl;
+}
+
+std::string Dog::getType (void) const {
     return this->_type;
 }

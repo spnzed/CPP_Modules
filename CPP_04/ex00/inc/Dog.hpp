@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 10:56:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:00:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "../inc/Animal.hpp"
 #include <string>
 
-class Cat : public Animal {
+class Dog : public Animal {
     private:
         std::string _type;
     public:
-        Cat(void);  
-        ~Cat(void);
+        Dog(void); 
+        Dog(const Dog &a);
+        ~Dog(void);
+
+        Dog &operator=(const Dog &a);
 
         void        makeSound(void) const;
         std::string getType(void)const;

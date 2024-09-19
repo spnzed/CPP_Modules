@@ -6,11 +6,11 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 11:51:57 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:04:18 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "../inc/Animal.hpp"
 #include <iostream>
 #include <string>
 
@@ -18,8 +18,19 @@ Animal::Animal(void) : _type("Animal_default") {
     std::cout << "Animal Construcor Called" << std::endl;
 }
 
+Animal::Animal(const Animal &a) {
+    *this = a;
+}
+
 Animal::~Animal(void) {
-    std::cout << "Animal Destructor Called" << std::endl;
+    std::cout << "Animal Destructor Called" << std::endl;  
+}
+
+Animal& Animal::operator=(const Animal &a) {
+    if (this != &a) {
+        this->_type = a._type;
+    }
+    return *this;
 }
 
 void Animal::makeSound (void) const {

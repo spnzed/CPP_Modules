@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/12 11:28:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:55:37 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include <iostream>
+#include "../inc/Animal.hpp"
 #include <string>
 
-Dog::Dog(void) : _type("Dog_default") {
-    std::cout << "Dog Construcor Called" << std::endl;
-    this->brain = new Brain;
-}
+class Cat : public Animal {
+    private:
+        std::string _type;
+    public:
+        Cat(void); 
+        Cat(const Cat &a);
+        ~Cat(void);
 
-Dog::~Dog(void) {
-    std::cout << "Dog Destructor Called" << std::endl;
-    delete this->brain;
-}
+        Cat &operator=(const Cat &a);
 
-void Dog::makeSound (void) const{
-    std::cout << "Woof, woof" << std::endl;
-}
-
-std::string Dog::getType (void) const {
-    return this->_type;
-}
+        void        makeSound(void) const;
+        std::string getType(void)const;
+};
