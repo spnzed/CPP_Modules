@@ -6,13 +6,13 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/09/19 11:43:02 by aaespino         ###   ########.fr        #
+#    Updated: 2024/09/19 12:44:36 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #			VARIABLES
 
-NAME	= flagtrap
+NAME	= diamondtrap
 
 SRC_DIR = src/
 
