@@ -6,9 +6,12 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 13:15:51 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:49:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef _ANIMAL_HPP
+#define _ANIMAL_HPP
 
 #include <string>
 
@@ -27,3 +30,5 @@ class Animal {
         virtual void        makeSound(void) const = 0; // QUE COJONES ES ESTO
         virtual std::string getType(void) const;
 };
+
+#endif

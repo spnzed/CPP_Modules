@@ -6,9 +6,12 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 13:09:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/23 12:51:14 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef _BRAIN_HPP
+#define _BRAIN_HPP
 
 #include <string>
 
@@ -24,3 +27,5 @@ class Brain {
 
         Brain &operator=(const Brain &a); 
 };
+
+#endif
