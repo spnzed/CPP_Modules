@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:21:56 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/23 18:28:12 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/24 15:01:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ class Character : public ICharacter {
         std::string     _type;
         AMateria*       _materia[4];
     public:
-        virtual Character(Character const & a);
-        virtual Character(std::string const & type);
-        virtual ~Character() {}
+        Character(void);
+        Character(Character const & a);
+        Character(std::string const & type);
+        ~Character(void);
 
         Character &operator=(const Character &a);
 
-        virtual std::string const & getName() const = 0;
-        virtual void equip(AMateria* m) = 0;
-        virtual void unequip(int idx) = 0;
-        virtual void use(int idx, Character& target) = 0;
+        std::string const & getName() const;
+        void equip(AMateria* m);
+        void unequip(int idx);
+        void use(int idx, ICharacter& target);
+        void printMaterias(void);
 };
 
 #endif

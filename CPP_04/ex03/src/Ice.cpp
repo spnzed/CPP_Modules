@@ -6,37 +6,39 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:31:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/23 17:17:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/24 18:56:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Ice.hpp"
 
 Ice::Ice(void) {
+    this->AMateria::_type = "ice";
+    std::cout << "\033[34;4m" << "[Ice]\t\t\t" << "\033[0;4m" << "default constructor called" << "\033[0m" << std::endl;
 }
 
 Ice::Ice(const Ice &a) {
-    *this->_type = a;    
-}
-
-Ice::Ice(std::string const & type) : _type(type) {
+    *this = a;
+    std::cout << "\033[34;4m" << "[Ice]\t\t\t" << "\033[0;4m" << "copy constructor called" << "\033[0m" << std::endl;
 }
 
 Ice::~Ice(void) {
+    std::cout << "\033[34;4m" << "[Ice]\t\t\t" << "\033[0;4m" << "destructor called" << "\033[0m" << std::endl;
 }
 
-Ice Ice::operator=(const Ice &a) {
+Ice &Ice::operator=(const Ice &a) {
     if (this != &a) {
         this->_type = a._type;
     }
+    std::cout << "\033[34;4m" << "[Ice]\t\t\t" << "\033[0;4m" << "assignment operator called" << "\033[0m" << std::endl;
     return *this;
 }
 
-void Ice::use(ICharacter& target) const {
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+
+AMateria* Ice::clone(void) const {
+    return (new Ice(*this));
 }
 
-Ice* Ice::clone(void) const {
-    Ice *ret = new Ice(this.getName());
-    return ret;
+void Ice::use(ICharacter& target) {
+    std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

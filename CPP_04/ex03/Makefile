@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/09/23 18:07:39 by aaespino         ###   ########.fr        #
+#    Updated: 2024/09/24 19:47:00 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	= materia
 
 SRC_DIR = src/
 
-SRC		= AMateria.cpp Character.cpp Cure.cpp Ice.cpp main.cpp MateriaSource.cpp
+SRC		= AMateria.cpp Cure.cpp Ice.cpp main.cpp MateriaSource.cpp Character.cpp
 
 OBJ_DIR = obj/
 
@@ -24,7 +24,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
 
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -g -fsanitize=address
 RM		= rm -f
 INCLUDE = -I ./
 
