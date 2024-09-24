@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 12:49:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:11:47 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,34 @@
 #include <string>
 
 int main() {
-    const Animal* Farm[10];
+    int     N = 10;
+    const   Animal* Farm[N];
 
-    for (int i = 0; i < 5 ; i++) {
-        Farm[i] = new Dog();
+    if (N % 2 == 0) {    
+        for (int i = 0; i < N / 2; i++) {
+            std::cout << "\033[34m" << "Creating Dog Number " << i + 1 << "\033[0m" << std::endl;
+            Farm[i] = new Dog();
+        }
+        for (int i = N / 2; i < N; i++) {
+            std::cout << "\033[33m" << "Creating Cat Number " << i + 1 << "\033[0m" << std::endl;
+            Farm[i] = new Cat();
+        }
+        for (int i = 0; i < N; i++) {
+            std::cout << "\033[31m" << "Deleting animal Number " << i + 1 << "\033[0m" << std::endl;
+            delete Farm[i];
+        }
+    } else {
+        std::cout << "Error. Odd numbers are not allowed." << std::endl;
     }
 
-    for (int i = 5; i < 10 ; i++) {
-        Farm[i] = new Cat();
-    }
+    std::cout << std::endl;
+    std::cout << "\033[30m" << "Should not create a leak. ↓↓↓↓" << "\033[0m" << std::endl;
 
-    for (int i = 0; i < 10 ; i++) {
-        delete Farm[i];
-    }
+    const Animal *i = new Dog();
+    const Animal *j = new Cat();
+
+    delete i;
+    delete j;
 
     return 0;
 }

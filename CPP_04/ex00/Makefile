@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
+#    By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/09/19 12:46:55 by aaespino         ###   ########.fr        #
+#    Updated: 2024/09/20 13:23:11 by aaronespino      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	= animal
 
 SRC_DIR = src/
 
-SRC		= main.cpp Dog.cpp Cat.cpp Animal.cpp
+SRC		= main.cpp Dog.cpp Cat.cpp Animal.cpp WrongCat.cpp WrongAnimal.cpp
 
 OBJ_DIR = obj/
 

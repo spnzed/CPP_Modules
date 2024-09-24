@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 13:05:40 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:21:48 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Cat::Cat(void) : _type("Cat_default") {
 }
 
 Cat::Cat(const Cat &a) {
+    this->brain = new Brain();
     *this = a;
 }
 
@@ -31,7 +32,7 @@ Cat::~Cat(void) {
 Cat& Cat::operator=(const Cat &a) {
     if (this != &a) {
         this->_type = a._type;
-        this->brain = a.brain;
+        *this->brain = *a.brain;
     }
     return *this;
 }

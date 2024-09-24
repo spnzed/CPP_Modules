@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/23 12:49:48 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:07:03 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _CAT_HPP
-#define _CAT_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
 #include "../inc/Animal.hpp"
 #include "../inc/Brain.hpp"

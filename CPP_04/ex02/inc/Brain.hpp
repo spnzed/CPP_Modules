@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/23 12:51:14 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:08:26 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _BRAIN_HPP
-#define _BRAIN_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 #include <string>
 

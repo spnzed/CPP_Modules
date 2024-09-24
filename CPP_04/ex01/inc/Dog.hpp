@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/23 12:50:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:07:42 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _DOG_HPP
-#define _DOG_HPP
+#ifndef DOG_HPP
+#define DOG_HPP
 
 #include "../inc/Animal.hpp"
 #include "../inc/Brain.hpp"

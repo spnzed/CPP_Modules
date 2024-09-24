@@ -3,33 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 12:49:56 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 13:35:20 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Dog.hpp"
 #include "../inc/Cat.hpp"
+#include "../inc/WrongCat.hpp"
 
 #include <iostream>
 #include <string>
 
 int main() {
+
+    std::cout << "Constructors: " << std::endl;
+    std::cout << std::endl;
+
     const Animal* meta = new Animal();
     const Animal* j = new Dog();
     const Animal* i = new Cat();
+    const WrongAnimal* k = new WrongCat();
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound();
-    j->makeSound();
+    std::cout << std::endl;
+
+    std::cout << "Classes: " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "\033[35m" << meta->getType() << "\033[0m" << " " << std::endl;
+    std::cout << "\033[34m" << j->getType() << "\033[0m" << " " << std::endl;
+    std::cout << "\033[32m" << i->getType() << "\033[0m" << " " << std::endl;
+    std::cout << "\033[33m" << k->getType() << "\033[0m" << " " << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "Sounds: " << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "\033[35m";
     meta->makeSound();
+    std::cout << "\033[0m"; 
+
+    std::cout << "\033[34m";
+    j->makeSound();
+    std::cout << "\033[0m"; 
+
+    std::cout << "\033[32m";
+    i->makeSound();
+    std::cout << "\033[0m"; 
+
+    std::cout << "\033[33m";
+    k->makeSound();
+    std::cout << "\033[0m"; 
+
+    std::cout << std::endl;
+
+    std::cout << "Destructors: " << std::endl;
+    std::cout << std::endl;
 
     delete meta;
     delete i;
     delete j;
+    delete k;
 
     return 0;
 }

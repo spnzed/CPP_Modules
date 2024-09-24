@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 13:03:37 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:27:35 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <string>
 
-Cat::Cat(void) : _type("Cat_default") {
+Cat::Cat(void) : _type("Cat") {
     std::cout << "Cat Construcor Called" << std::endl;
 }
 
@@ -40,3 +40,4 @@ void Cat::makeSound (void) const {
 std::string Cat::getType (void) const {
     return this->_type;
 }
+

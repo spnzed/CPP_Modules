@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/19 13:12:13 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/20 12:50:58 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
