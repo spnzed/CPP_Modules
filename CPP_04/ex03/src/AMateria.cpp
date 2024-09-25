@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:30:50 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/25 11:14:29 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:33:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ AMateria& AMateria::operator=(const AMateria &a) {
 std::string const & AMateria::getName(void) const {
     return this->_type;
 }
+
+void AMateria::setName(std::string type) {
+    this->_type = type;
+}
+
 
 void AMateria::use(ICharacter& target) {
     (void)target;

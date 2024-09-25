@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:25:25 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/25 12:13:28 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:39:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ void MateriaSource::learnMateria(AMateria* materia) {
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
     for (int i = 0; i < 4; i++) {
-        // std::cout << "\033[32m" << type  << "\033[0m" << std::endl;
-        // std::cout << "\033[32m" << i  << "\033[0m" << std::endl;
-        // std::cout << "\033[32m" << this->_materia[i]->getName()  << "\033[0m" << std::endl;
         if (this->_materia[i] != NULL && this->_materia[i]->getName() == type && this->_materia[i]->getName() != "Default_Materia") {
             std::cout << "Created a materia with type " << type << std::endl;
             return (this->_materia[i]->clone());

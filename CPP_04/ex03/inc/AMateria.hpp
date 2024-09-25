@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:03:30 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/24 12:06:00 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:12:05 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class AMateria {
         AMateria &operator=(const AMateria &a);
 
         std::string const & getName() const; //Returns the materia type
+        void setName(std::string type);
         virtual AMateria* clone() const = 0;
         virtual void use (ICharacter& target);
 };

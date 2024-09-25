@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:31:21 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/25 11:14:29 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:14:51 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ Ice &Ice::operator=(const Ice &a) {
     std::cout << "\033[34;4m" << "[Ice]\t\t\t" << "\033[0;4m" << "assignment operator called" << "\033[0m" << std::endl;
     return *this;
 }
-
 
 AMateria* Ice::clone(void) const {
     return (new Ice(*this));
