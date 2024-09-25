@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:25:25 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/25 11:14:29 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:13:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &a) {
     if (this != &a) {
         for (int i = 0; i < 4; i++) {
             if (this->_materia[i] != NULL)
+                delete this->_materia[i];
+        }
+        for (int i = 0; i < 4; i++) {
+            if (a._materia[i] != NULL) {
                 this->_materia[i] = a._materia[i]->clone();
+            }
             else
                 this->_materia[i] = NULL;
         }
