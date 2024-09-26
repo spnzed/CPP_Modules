@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/20 13:06:04 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/26 15:22:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Animal {
 
         Animal &operator=(const Animal &a);
 
-        virtual void        makeSound(void) const = 0; // QUE COJONES ES ESTO
+        virtual void        makeSound(void) const = 0; // Abstract Class
         virtual std::string getType(void) const;
 };
 
