@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/20 13:00:10 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/26 15:44:45 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 #include <iostream>
 #include <string>
 
-Animal::Animal(void) : _type("Animal") {
-    std::cout << "Animal Construcor Called" << std::endl;
+Animal::Animal(void) : _type("Animal_default") {
+    std::cout << "Animal construcor called" << std::endl;
 }
 
 Animal::Animal(const Animal &a) {
+    std::cout << "Animal copy constructor called" << std::endl;
     *this = a;
 }
 
 Animal::~Animal(void) {
-    std::cout << "Animal Destructor Called" << std::endl;  
+    std::cout << "Animal destructor called" << std::endl;  
 }
 
 Animal& Animal::operator=(const Animal &a) {
+    std::cout << "Animal copy assignment operator" << std::endl;
     if (this != &a) {
         this->_type = a._type;
     }

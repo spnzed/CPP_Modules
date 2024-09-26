@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/20 13:22:31 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/26 15:42:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 #include <string>
 
 WrongCat::WrongCat(void) : _type("WrongCat") {
-    std::cout << "WrongCat Construcor Called" << std::endl;
+    std::cout << "WrongCat construcor called" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &a) {
+    std::cout << "WrongCat copy constructor called" << std::endl;
     *this = a;
 }
 
 WrongCat::~WrongCat(void) {
-    std::cout << "WrongCat Destructor Called" << std::endl;    
+    std::cout << "WrongCat destructor called" << std::endl;    
 }
 
 WrongCat& WrongCat::operator=(const WrongCat &a) {
+    std::cout << "WrongCat copy assignment operator" << std::endl;
     if (this != &a) {
         this->_type = a._type;
     }

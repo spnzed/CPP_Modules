@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/20 14:23:32 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/26 15:58:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 #include <iostream>
 #include <string>
 
-Dog::Dog(void) : _type("Dog_default") {
-    std::cout << "Dog Construcor Called" << std::endl;
+Dog::Dog(void) : _type("Dog") {
+    std::cout << "Dog construcor called" << std::endl;
     this->brain = new Brain;
 }
 
 Dog::Dog(const Dog &a) {
+    std::cout << "Dog copy constructor called" << std::endl;
     this->brain = new Brain();
     *this = a;
 }
 
 Dog::~Dog(void) {
-    std::cout << "Dog Destructor Called" << std::endl;    
+    std::cout << "Dog destructor called" << std::endl;    
     delete this->brain;
 }
 
 Dog& Dog::operator=(const Dog &a) {
+    std::cout << "Dog copy assignment operator" << std::endl;
     if (this != &a) {
         this->_type = a._type;
         *this->brain = *a.brain;
