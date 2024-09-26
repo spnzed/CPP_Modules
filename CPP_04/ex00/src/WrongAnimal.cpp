@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/20 13:22:37 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/09/26 15:24:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal &a) {
 }
 
 void WrongAnimal::makeSound (void) const {
-    std::cout << "ASDF IM AN WRONGANIMAL PLEASE GIVE ME A SPECIE TO LIVE BY" << std::endl;
+    std::cout << "ASDF IM A WRONGANIMAL PLEASE GIVE ME A SPECIE TO LIVE BY" << std::endl;
 }
 
 std::string WrongAnimal::getType(void) const {
