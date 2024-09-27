@@ -6,11 +6,12 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:31:16 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/27 16:33:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:45:43 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Bureaucrat.hpp"
+#include "../inc/Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("Default_Burocrat"), _grade(150) {
     std::cout << "Bureaucrat default constructor called" << std::endl;
@@ -69,6 +70,21 @@ void    Bureaucrat::setGrade(int grade) {
     catch (const std::exception& errorMessage) {
         std::cerr << "Error: " << errorMessage.what() << std::endl;
     } 
+}
+
+void    Bureaucrat::signForm(Form & f) const {
+    if (!f.isSigned()) {
+        try {
+            f.beSigned(*this);
+            std::cout << this->_name << " signed " << f.getName() << std::endl;
+        } 
+        catch (Form::GradeTooLowException) {
+            std::cout << this->_name << " couldn't sign " << f.getName() << ", burocrat's grade is too low." << std::endl;
+        }
+    }
+    else {
+        std::cout << this->_name << " couldn't sign " << f.getName() << ", it's already signed." << std::endl;
+    }
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& a) {

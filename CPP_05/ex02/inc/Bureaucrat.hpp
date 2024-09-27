@@ -6,15 +6,21 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:39:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/27 16:40:06 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:27:16 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
+#pragma once
+
+#include "../inc/Form.hpp"
+
 #include <iostream>
 #include <string>
+
+class Form;
 
 class Bureaucrat {
 	private:
@@ -44,7 +50,12 @@ class Bureaucrat {
 		const std::string	getName(void) const;
 		int					getGrade(void) const;
 
+		void				incGrade(void);
+		void				decGrade(void);
+
 		void				setGrade(int grade);
+		void				signForm(Form & f) const;
+		void				executeForm(AForm const & form);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& a);

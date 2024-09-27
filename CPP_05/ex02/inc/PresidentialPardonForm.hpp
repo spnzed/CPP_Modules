@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 11:39:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/27 16:40:06 by aaespino         ###   ########.fr       */
+/*   Created: 2024/09/27 19:10:40 by aaespino          #+#    #+#             */
+/*   Updated: 2024/09/27 19:50:46 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+
+#ifndef PRESIDENTIAL_HPP
+#define PRESIDENTIAL_HPP
+
+#pragma once
+
+#include "../inc/Bureaucrat.hpp"
+#include "../inc/AForm.hpp"
 
 #include <iostream>
 #include <string>
 
-class Bureaucrat {
+class Bureaucrat;
+
+class PresidentialPardonForm : public AForm {
 	private:
 		const std::string	_name;
-		int					_grade;
+		bool				_signed;
+		const int			_sign_grade;
+		const int			_execution_grade;
 	public:
-		Bureaucrat(void);
-		Bureaucrat(std::string name, int grade);
-		Bureaucrat(const Bureaucrat &a);
-		~Bureaucrat(void);
-		Bureaucrat &operator=(const Bureaucrat &a);
+		PresidentialPardonForm(void);
+		PresidentialPardonForm(const PresidentialPardonForm &a);
+		~PresidentialPardonForm(void);
+		PresidentialPardonForm &operator=(const PresidentialPardonForm &a);
 
 		class GradeTooHighException : public std::exception {
 			public:
@@ -42,11 +51,19 @@ class Bureaucrat {
 		};
 
 		const std::string	getName(void) const;
-		int					getGrade(void) const;
+		bool				isSigned(void);
+		int					getSignGrade(void) const;
+		int					getExecutionGrade(void) const;
 
-		void				setGrade(int grade);
+		void				incGrade(void);
+		void				decGrade(void);
+
+		void				compSignGrade(int grade);
+		void				compExecutionGrade(int grade);
+
+		void				beSigned(const Bureaucrat& bureaucrat);
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& a);
+std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm& a);
 
 #endif
