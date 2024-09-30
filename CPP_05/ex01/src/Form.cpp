@@ -85,10 +85,10 @@ void    Form::compExecutionGrade(int grade) {
 }
 
 void    Form::beSigned(const Bureaucrat& bureaucrat) {
-    if (bureaucrat.getGrade() > this->_sign_grade)
-        throw Form::GradeTooLowException();
-    else
+    if (bureaucrat.getGrade() <= this->_sign_grade)
         this->_signed = true;
+    else
+        throw Form::GradeTooLowException();
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& a) {

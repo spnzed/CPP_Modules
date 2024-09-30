@@ -6,17 +6,17 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/09/30 17:29:33 by aaespino         ###   ########.fr        #
+#    Updated: 2024/09/30 18:02:54 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #			VARIABLES
 
-NAME	= ExecForm
+NAME	= InternForm
 
 SRC_DIR = src/
 
-SRC		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRC		= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp
 
 OBJ_DIR = obj/
 
