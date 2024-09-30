@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 13:09:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/25 17:35:36 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:34:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 int main( void )
 {
-	// 1. Crear MateriaSource
 	std::cout << BOLD << BLUE << "1. Creating MateriaSource" << RESET << std::endl; 
 	IMateriaSource* src = new MateriaSource();
 	src->printMaterias();
@@ -175,7 +174,7 @@ std::cout << std::endl;
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-	std::cout << RED << "13. Create new MateriaSource and learn materias (check maximum too):" << RESET << std::endl;
+	std::cout << RED << "12. Create new MateriaSource and learn materias (check maximum too):" << RESET << std::endl;
 	std::cout << std::endl;
 	IMateriaSource* src2 = new MateriaSource();
 	src2->learnMateria(new Ice());
@@ -190,7 +189,7 @@ std::cout << std::endl;
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-	std::cout << GREEN << "14. Create 2 new characters and test deep copy:" << RESET << std::endl;
+	std::cout << GREEN << "13. Create 2 new characters and test deep copy:" << RESET << std::endl;
 	std::cout << std::endl;
 	Character *dur0 = new Character("Alice");
 	ICharacter *dur1 = new Character(*dur0);
@@ -201,7 +200,7 @@ std::cout << std::endl;
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ /
-	std::cout << YELLOW << "15. Create materias and equip them (also check unknown materias):" << RESET << std::endl;
+	std::cout << YELLOW << "14. Create materias and equip them (also check unknown materias):" << RESET << std::endl;
 	std::cout << std::endl;
 
 	IMateriaSource* src3 = new MateriaSource();
@@ -222,7 +221,7 @@ std::cout << std::endl;
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-	std::cout << BLUE << "16. Check maximum equipped too:" << RESET << std::endl;
+	std::cout << BLUE << "15. Check maximum equipped too:" << RESET << std::endl;
 	std::cout << std::endl;
 	AMateria *cure2 = new Cure();
 	AMateria *ice2 = new Ice();
@@ -237,7 +236,7 @@ std::cout << std::endl;
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-	std::cout << MAGENTA << "17. Use materias on new chacarter:" << RESET << std::endl;
+	std::cout << MAGENTA << "16. Use materias on new chacarter:" << RESET << std::endl;
 	std::cout << std::endl;
 	ICharacter* bob = new Character("Bob");
 	dur2->use(0, *bob);

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:04:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/09/26 15:42:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:32:57 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string>
 
 Dog::Dog(void) : _type("Dog") {
-    std::cout << "Dog construcor called" << std::endl;
+    std::cout << "Dog constructor called" << std::endl;
 }
 Dog::Dog(const Dog &a) {
     std::cout << "Dog copy constructor called" << std::endl;
