@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 14:36:33 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/02 14:21:03 by aaespino         ###   ########.fr       */
+/*   Created: 2024/10/01 10:50:43 by aaespino          #+#    #+#             */
+/*   Updated: 2024/10/02 15:16:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/ScalarConverter.hpp"
+#ifndef BASE_HPP
+#define BASE_HPP
 
-int main (int argc, char **argv) {
-	if (argc == 2) {
-		ScalarConverter::convert(argv[1]);
-	} else {
-		std::cerr << "Error: Please one argument." << std::endl;
-	}
-	return 0;
-}
+#pragma once
+
+#include <iostream>
+#include <string>
+
+class Base {
+    public:
+        virtual ~Base(void);
+};
+
+#endif

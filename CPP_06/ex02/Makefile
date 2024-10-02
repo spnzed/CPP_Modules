@@ -6,17 +6,17 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/10/02 14:06:22 by aaespino         ###   ########.fr        #
+#    Updated: 2024/10/02 15:16:29 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #			VARIABLES
 
-NAME	= Conversion
+NAME	= Base
 
 SRC_DIR = src/
 
-SRC		=	ScalarConverter.cpp main.cpp
+SRC		=	Base.cpp main.cpp
 
 OBJ_DIR = obj/
 

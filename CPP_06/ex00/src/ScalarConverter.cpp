@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:59:20 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/01 18:11:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:03:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,37 @@
 
 void ScalarConverter::convert(std::string literal) {
 
+	//	Comprove input
+	if (literal == "-inff" || literal == "+inff" || literal == "inff" \
+		|| literal == "-inf" || literal == "+inf" || literal == "inf" \
+		|| literal == "nan" || literal == "nanf") {
+		;		
+	} else {
+		int i = 0;
+		int end = literal.size();
+
+		if (literal[i] == '.' || literal[end - 1] == '.') {
+			std::cout << "char: impossible" << std::endl;
+        	std::cout << "int: impossible" << std::endl;
+        	std::cout << "float: impossible" << std::endl;
+        	std::cout << "double: impossible" << std::endl;
+			return ;
+		}	
+		if (literal[i] == '-' || literal[i] == '+')
+			i++;
+		if (literal[end - 1] == 'f')
+			end -= 2;
+		for (; i < end ; i++) {
+			if (literal[i] != '.')
+				if (!std::isdigit(literal[i])) {
+					std::cout << "char: impossible" << std::endl;
+        			std::cout << "int: impossible" << std::endl;
+        			std::cout << "float: impossible" << std::endl;
+        			std::cout << "double: impossible" << std::endl;
+					return ;
+				}
+		}
+	}
 
 	// Char to -> x
 	if (literal.size() == 1) {
