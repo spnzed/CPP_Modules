@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:44:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/04 14:20:03 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:03:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ AForm*   Intern::makeForm(std::string form, std::string target) const {
     switch (getForm(form)) {
         case 0: {
             ret = new ShrubberyCreationForm(target);
-            std::cout << "Intern creates " << ret->getName();
+            std::cout << "Intern creates " << ret->getName() << std::endl;
             break ;
         }
         case 1: {
             ret = new RobotomyRequestForm(target);
-            std::cout << "Intern creates " << ret->getName();
+            std::cout << "Intern creates " << ret->getName() << std::endl;
             break ;
         }
         case 2: {
             ret = new PresidentialPardonForm(target);
-            std::cout << "Intern creates " << ret->getName();
+            std::cout << "Intern creates " << ret->getName() << std::endl;
             break ;
         }
         default: {

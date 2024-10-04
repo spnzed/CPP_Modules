@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 18:37:32 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/27 18:40:19 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:58:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int main() {
     Bureaucrat b2("Bob", 50);
     b2.signForm(form1);  // Bob should not be able to sign
 
-    // 3. Create another bureaucrat with a higher grade who should be able to sign
+    // 3. Create another bureaucrat with a higher grade
     std::cout << "\033[34m" << "3. Creating a bureaucrat with a higher grade: " << "\033[0m" << std::endl;
     Bureaucrat b3("David", 15);
     std::cout << b3 << std::endl;
-    b3.signForm(form1);  // David should be able to sign
 
-    // 4. Create a form with a high signing grade and try to sign it
+    // 4. Create a form with a high signing grade
     std::cout << "\033[33m" << "4. Creating a form with a high signing grade: " << "\033[0m" << std::endl;
     Form form2("Form2", 1, 30);  // Very high signing grade
     std::cout << form2 << std::endl;
@@ -52,7 +51,7 @@ int main() {
 
     // 8. Check signing of multiple forms
     std::cout << "\033[33m" << "8. Creating and signing multiple forms: " << "\033[0m" << std::endl;
-    Form form3("Form3", 10, 10);
+    Form form3("Form3", 15, 10);
     Form form4("Form4", 50, 50);
     std::cout << form3 << std::endl;
     std::cout << form4 << std::endl;
