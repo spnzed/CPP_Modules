@@ -6,18 +6,18 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 20:11:00 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/30 17:14:13 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:39:17 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/PresidentialPardonForm.hpp"
 #include "../inc/Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 145, 137), _target(target) {
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target) {
     std::cout << "PresidentialPardonForm constructor called" << std::endl;;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &a) : AForm("PresidentialPardonForm", 145, 137) {
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &a) : AForm("PresidentialPardonForm", 25, 5) {
     std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
     *this = a;
 }

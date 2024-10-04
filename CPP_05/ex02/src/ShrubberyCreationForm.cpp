@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:51:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/30 17:11:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:38:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include <fstream>
 #include <iostream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 25, 5), _target(target) {
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
     std::cout << "ShrubberyCreationForm constructor called" << std::endl;;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &a) : AForm("ShrubberyCreationForm", 25, 5) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &a) : AForm("ShrubberyCreationForm", 145, 137) {
     std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
     *this = a;
 }
