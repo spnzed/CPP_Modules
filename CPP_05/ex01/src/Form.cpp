@@ -23,7 +23,7 @@ Form::Form(std::string name, int sign_grade, int execution_grade) : _name(name),
     compExecutionGrade(execution_grade);
 }
 
-Form::Form(const Form &a) : _name(a._name), _signed(a.isSigned()), _sign_grade(a._sign_grade) , _execution_grade(a._execution_grade) {
+Form::Form(const Form &a) : _name(a._name), _signed(a._signed), _sign_grade(a._sign_grade) , _execution_grade(a._execution_grade) {
     std::cout << "Form copy constructor called" << std::endl;
     *this = a;
 }

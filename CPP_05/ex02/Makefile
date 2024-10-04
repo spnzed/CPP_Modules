@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/09/30 17:29:33 by aaespino         ###   ########.fr        #
+#    Updated: 2024/10/04 14:29:28 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,9 @@ fclean:	clean
 	find . -name "*_shrubbery" -exec $(RM) {} +  
 
 re: fclean $(NAME)
+
+valgrind: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
 
 -include $(DEP)
 
