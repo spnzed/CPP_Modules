@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:39:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/27 18:26:04 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:35:06 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ class Form {
 		bool				isSigned(void);
 		int					getSignGrade(void) const;
 		int					getExecutionGrade(void) const;
-
-		void				incGrade(void);
-		void				decGrade(void);
 
 		void				compSignGrade(int grade);
 		void				compExecutionGrade(int grade);
