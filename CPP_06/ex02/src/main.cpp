@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:02:33 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/02 15:45:13 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:01:34 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int main() {
     Base* obj = generate();
 
     identify(obj);
-
     identify(*obj);
 
     delete obj;

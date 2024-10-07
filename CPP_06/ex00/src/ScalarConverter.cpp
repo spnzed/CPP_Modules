@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:59:20 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/02 14:03:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:54:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,28 @@
 #include <climits>
 #include <cctype>   // Para std::isprint
 
+ScalarConverter::ScalarConverter(void) {
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& a) {
+    *this = a;
+}
+
+ScalarConverter::~ScalarConverter(void) {
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter& a) {
+    if (this != &a) {
+    }
+    return *this;
+}
+
 void ScalarConverter::convert(std::string literal) {
 
 	//	Comprove input
 	if (literal == "-inff" || literal == "+inff" || literal == "inff" \
 		|| literal == "-inf" || literal == "+inf" || literal == "inf" \
-		|| literal == "nan" || literal == "nanf") {
+		|| literal == "nan" || literal == "nanf" || literal.size() == 1) {
 		;		
 	} else {
 		int i = 0;
@@ -70,7 +86,7 @@ void ScalarConverter::convert(std::string literal) {
 	else if (literal.find('.') != std::string::npos) {
 		char *end;
 		double base = std::strtod(literal.c_str(), &end);  // Usamos strtod para todos los casos de punto decimal
-		long long comp = static_cast<long long>(base);
+		long comp = static_cast<long>(base);
 
 		// Float or Double to -> x
 		if (*end == 'f' && *(end + 1) == '\0') {  // Si termina en 'f' es un float
@@ -130,7 +146,7 @@ void ScalarConverter::convert(std::string literal) {
 
         int n = std::atoi(literal.c_str());
         double ndouble = std::strtod(literal.c_str(), &end);
-		long long comp = static_cast<long long>(ndouble);
+		long comp = static_cast<long>(ndouble);
 
 		if ((comp < INT_MIN || comp > INT_MAX) || (literal == "nanf" || literal == "nan")) {
         	std::cout << "char: impossible" << std::endl;
