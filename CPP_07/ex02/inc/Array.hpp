@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:23:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/02 18:30:53 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:29:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ Array<T>::Array(unsigned int n) : _size(n) {
 
 template <class T>
 Array<T>::Array(const Array& a) : _size(a._size) {
-    _array = new T[_size];
+    _array = new T[a._size];
     for (size_t i = 0; i < _size; i++) {
         _array[i] = a._array[i];
     }
