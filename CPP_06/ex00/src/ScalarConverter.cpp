@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:59:20 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/07 13:54:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:46:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,24 @@ void ScalarConverter::convert(std::string literal) {
 		if (literal[i] == '-' || literal[i] == '+')
 			i++;
 		if (literal[end - 1] == 'f')
-			end -= 2;
+			end--;
+		if (end == 0) {
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: impossible" << std::endl;
+			std::cout << "double: impossible" << std::endl;
+			return ;
+		}
 		for (; i < end ; i++) {
-			if (literal[i] != '.')
+			if (literal[i] != '.') {
 				if (!std::isdigit(literal[i])) {
 					std::cout << "char: impossible" << std::endl;
-        			std::cout << "int: impossible" << std::endl;
-        			std::cout << "float: impossible" << std::endl;
-        			std::cout << "double: impossible" << std::endl;
+					std::cout << "int: impossible" << std::endl;
+					std::cout << "float: impossible" << std::endl;
+					std::cout << "double: impossible" << std::endl;
 					return ;
 				}
+			}
 		}
 	}
 
