@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:23:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/07 14:29:23 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:31:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@
 
 template <class T>
 class Array {
-  private:
-    T* _array;
-    size_t _size;
-  public:
-    Array(void);
-    Array(unsigned int n);
-    Array(const Array& a);
-    ~Array(void);
+    private:
+        T* _array;
+        size_t _size;
+    public:
+        Array(void);
+        Array(unsigned int n);
+        Array(const Array& a);
+        ~Array(void);
 
-    Array &operator=(const Array &a);
-    T&operator[](size_t index);
-    T&operator[](size_t index) const;
+        Array &operator=(const Array &a);
+        T&operator[](size_t index);
+        T&operator[](size_t index) const;
 
-    size_t  size(void) const;
+        size_t  size(void) const;
 };
 
 template <class T>
@@ -57,13 +57,15 @@ Array<T>::Array(const Array& a) : _size(a._size) {
 
 template <class T>
 Array<T>::~Array(void) {
-    delete[] _array;
+    if (this->_size != 0)
+        delete[] _array;
 }
 
 template <class T>
 Array<T>& Array<T>::operator=(const Array &a) {
     if (this != &a) {
-        delete _array;
+        if (this->_size != 0)
+            delete _array;
         _size = a._size;
         _array = new T[a._size];
         for (size_t i = 0; i < a.size(); i++) {
@@ -76,21 +78,21 @@ Array<T>& Array<T>::operator=(const Array &a) {
 template <class T>
 T& Array<T>::operator[](size_t index){
     
-    if (index >= Array<T>::size()) {
+    if (this->_array == NULL)
+        throw std::logic_error( "Trying to access empty array" );
+    if (index >= Array<T>::size())
         throw std::exception();
-    } else {
-        return _array[index];
-    }
+    return _array[index];
 }
 
 template <class T>
 T& Array<T>::operator[](size_t index) const {
     
-    if (index >= Array<T>::size()) {
+    if (this->_array == NULL)
+        throw std::logic_error( "Trying to access empty array" );
+    if (index >= Array<T>::size())
         throw std::exception();
-    } else {
-        return _array[index];
-    }
+    return _array[index];
 }
 
 template <class T>
