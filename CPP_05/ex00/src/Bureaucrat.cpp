@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 11:31:16 by aaespino          #+#    #+#             */
-/*   Updated: 2024/09/27 16:33:52 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:57:50 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int Bureaucrat::getGrade(void) const {
 }
 
 void    Bureaucrat::incGrade(void) {
-    setGrade(this->_grade + 1);
+    setGrade(this->_grade - 1);
 }
 
 void    Bureaucrat::decGrade(void) {
-    setGrade(this->_grade - 1);
+    setGrade(this->_grade + 1);
 }
 
 void    Bureaucrat::setGrade(int grade) {
