@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:16:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/03 16:38:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:49:31 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ Span& Span::operator=(const Span &a) {
     }
     return *this;
 }
-    
-void Span::addNumber(unsigned int n) {
 
-    if (this->_total_added > _limit) {
-        throw std::exception();
-    } else {
-        this->_total_span.push_back(n);
+void Span::addNumber(unsigned int n) {
         this->_total_added++;
-    }
+        if (this->_total_added > _limit) {
+            throw std::exception();
+        } else {
+            this->_total_span.push_back(n);
+        }
 }
 
 void Span::addManyNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
