@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:06:26 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/11 13:57:05 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:28:44 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class MutantStack: public std::stack<T, Container> {
 
         typedef typename std::stack<T, Container>::container_type::iterator iterator; // Usar el iterador subyacente
 
-        iterator begin() { return this->c.begin(); } // Acceso al contenedor subyacente
-        iterator end() { return this->c.end(); }
+        iterator begin(void); 
+        iterator end(void);
 };
 
 template <typename T, typename Container>
@@ -48,6 +48,16 @@ template <typename T, typename Container>
 MutantStack<T, Container> &MutantStack<T, Container>::operator=(const MutantStack<T, Container> &a) {
     std::stack<T, Container>::operator=(a);
     return *this;
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::begin(void) {
+    return this->c.begin(); // Acceso al contenedor subyacente
+}
+
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end(void) {
+    return this->c.end(); // Acceso al contenedor subyacente
 }
 
 #endif

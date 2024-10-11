@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:16:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/11 13:46:27 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:27:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include <numeric>
 #include <string>
 
+
+Span::Span(void) : _limit(0), _total_added(0) {
+}
 
 Span::Span(unsigned int N) : _limit(N), _total_added(0) {
 }

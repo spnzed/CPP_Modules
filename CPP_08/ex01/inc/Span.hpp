@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:25:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/03 15:47:47 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 19:25:48 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Span {
         unsigned int		_limit;
         unsigned int		_total_added;
     public:
+        Span(void);
         Span(unsigned int N);
         Span(const Span &a);
         ~Span(void);
