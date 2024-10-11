@@ -6,11 +6,14 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:32:11 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/07 15:47:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:17:13 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Span.hpp"
+#include <cstdlib> // Para std::rand y std::srand
+#include <ctime>   // Para std::time
+#include <set>
 
 // Function to print titles with color
 void printTitle(const std::string& title, const std::string& colorCode) {
@@ -54,6 +57,35 @@ int main() {
         std::cerr << "Exception: Adding many numbers" << std::endl;
     }
 
+    // Título para añadir muchos números a la vez
+    printTitle("=== Test: Adding Many Random Numbers (10000) at Once ===", "\033[1;34m"); // Azul
+
+    // Inicializa el generador de números aleatorios
+    std::srand(static_cast<unsigned>(std::time(0)));
+    // Añadiendo muchos números aleatorios
+    std::set<int> uniqueNumbers;
+    int i = 0;
+    while (uniqueNumbers.size() < 10000) {
+        int randomNum;
+        if (i % 2 == 0)
+            randomNum = std::rand() % 100000; // Cambia el rango según lo desees
+        else
+            randomNum = -std::rand() % 100000;
+        uniqueNumbers.insert(randomNum); // Solo insertará si es único
+        i++;
+    }
+
+    std::vector<int> bignumbers(uniqueNumbers.begin(), uniqueNumbers.end());
+
+    Span big = Span(10000); // Asegúrate de que tu objeto Span esté correctamente definido
+
+    try {
+        big.addManyNumbers(bignumbers.begin(), bignumbers.end());
+        std::cout << "Successfully added 10,000 unique random numbers to the Span." << std::endl;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: Adding many numbers - " << e.what() << std::endl;
+    }
+
     // Title for calculating spans
     printTitle("=== Test: Calculating Shortest and Longest Span ===", "\033[1;34m"); // Blue
 
@@ -61,6 +93,20 @@ int main() {
     try {
         unsigned int shortest = sp.shortestSpan();
         unsigned int longest = sp.longestSpan();
+
+        std::cout << "Shortest Span: " << shortest << std::endl;
+        std::cout << "Longest Span: " << longest << std::endl;
+    } catch (const std::exception &e) {
+        std::cerr << "Error: (Calculating spans" << std::endl;
+    }
+
+    // Title for calculating spans
+    printTitle("=== Test: Calculating Shortest and Longest Span (10000) ===", "\033[1;34m"); // Blue
+
+    // Printing the results of the shortestSpan and longestSpan functions
+    try {
+        unsigned int shortest = big.shortestSpan();
+        unsigned int longest = big.longestSpan();
 
         std::cout << "Shortest Span: " << shortest << std::endl;
         std::cout << "Longest Span: " << longest << std::endl;
