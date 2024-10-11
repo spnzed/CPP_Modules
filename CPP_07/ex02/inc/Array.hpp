@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:23:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/09 16:31:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 17:58:28 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ template <class T>
 Array<T>& Array<T>::operator=(const Array &a) {
     if (this != &a) {
         if (this->_size != 0)
-            delete _array;
+            delete[] _array;
         _size = a._size;
         _array = new T[a._size];
         for (size_t i = 0; i < a.size(); i++) {
