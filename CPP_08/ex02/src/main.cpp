@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 17:05:13 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/10 18:39:09 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:54:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int main() {
 
         std::cout << CYAN << "Test 4: Copy Constructor" << RESET << std::endl;
         MutantStack<int> copyStack(mstack);
+        mstack.pop();
         std::cout << "Copy stack top element: " << copyStack.top() << std::endl; // Debería imprimir 3
     }
 

@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:16:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/07 15:49:31 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/11 13:46:27 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <iostream>
 #include <algorithm>
 #include <numeric>
-#include <list>
 #include <string>
 
 
@@ -23,9 +22,6 @@ Span::Span(unsigned int N) : _limit(N), _total_added(0) {
 }
 
 Span::Span(const Span &a) {
-    this->_limit = a._limit;
-    this->_total_span = a._total_span;
-    this->_total_added = a._total_added;
     *this = a;
 }
 
@@ -68,7 +64,7 @@ unsigned int Span::shortestSpan(void) {
 
     std::sort(tmp.begin(), tmp.end());
     
-    std::vector<int> diff(tmp.size() - 1);
+    std::vector<int> diff(tmp.size());
 
     std::adjacent_difference(tmp.begin(), tmp.end(), diff.begin());
 
