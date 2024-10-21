@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:06:26 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/11 19:28:44 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:12:55 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ MutantStack<T, Container> &MutantStack<T, Container>::operator=(const MutantStac
 
 template <typename T, typename Container>
 typename MutantStack<T, Container>::iterator MutantStack<T, Container>::begin(void) {
-    return this->c.begin(); // Acceso al contenedor subyacente
+    return this->c.begin();
 }
 
 template <typename T, typename Container>
 typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end(void) {
-    return this->c.end(); // Acceso al contenedor subyacente
+    return this->c.end();
 }
 
 #endif
