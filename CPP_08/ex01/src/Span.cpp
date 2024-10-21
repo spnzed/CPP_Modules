@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:16:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/11 19:27:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:06:35 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ Span& Span::operator=(const Span &a) {
 }
 
 void Span::addNumber(unsigned int n) {
+    unsigned int tmp = this->_total_added + 1;
+    if (tmp > this->_limit) {
+        throw std::exception();
+    } else {
         this->_total_added++;
-        if (this->_total_added > _limit) {
-            throw std::exception();
-        } else {
-            this->_total_span.push_back(n);
-        }
+        this->_total_span.push_back(n);
+    }
 }
 
 void Span::addManyNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
@@ -65,10 +66,8 @@ unsigned int Span::shortestSpan(void) {
         throw std::exception();
     }
 
-    std::sort(tmp.begin(), tmp.end());
-    
+    std::sort(tmp.begin(), tmp.end());    
     std::vector<int> diff(tmp.size());
-
     std::adjacent_difference(tmp.begin(), tmp.end(), diff.begin());
 
     return *std::min_element(diff.begin() + 1, diff.end());
@@ -86,4 +85,19 @@ unsigned int Span::longestSpan(void) {
     int span = *(tmp.end() - 1) - *tmp.begin();
 
     return span;   
+}
+
+void    Span::showSpan(void) {
+    std::vector<int> tmp = this->_total_span;
+
+    std::sort(tmp.begin(), tmp.end());
+
+    std::vector<int>::iterator it;
+
+    std::cout << "Span Content: " << std::endl;
+
+    for (it = tmp.begin(); it != tmp.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }

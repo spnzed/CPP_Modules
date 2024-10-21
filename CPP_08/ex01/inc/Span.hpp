@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:25:41 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/11 19:25:48 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:36:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ class Span {
         void addManyNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
         unsigned int shortestSpan(void);
         unsigned int longestSpan(void);
+
+        void showSpan(void);
 };
 
 #endif
