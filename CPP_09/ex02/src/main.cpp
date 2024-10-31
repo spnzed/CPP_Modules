@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/29 19:00:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:19:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,34 @@
 #include <vector>
 #include <cstdlib>
 
+std::vector<int> jacobsthal(int n) {
+    std::vector<int> j(n);
+    j[0] = 1;
+    j[1] = 3;
+    for (int i = 2; i < n; ++i) {
+        j[i] = j[i - 2] + 2 * j[i - 1];
+    }
+    return j;
+}
+
+int compRep(int target, char** set, int limit) {
+
+	for (int i = 0; i < limit; i++) {
+		if (target == atoi(set[i]))
+			return 1;
+	}
+
+	return 0;
+}
+
 int compArgs(char **argv, int argc) {
 
 	for (int i = 1; i < argc; i++) {
 		try {
 			int num = atoi(argv[i]);
 
+			if (compRep(num, argv + 1, i - 1))
+				return 0;
 			if (num < 1) {
 				std::cout << "Error" << std::endl;
 				return 0;
@@ -45,7 +67,7 @@ std::deque<int> getInp(char **nums, int argc) {
 	return main;
 }
 
-std::deque<int> pairCmp(std::deque<int> input) {
+std::deque<int> pairSwap(std::deque<int> input) {
 
 	for (int i = 0; i < int(input.size() / 2); i++) {
 		if (input[ i * 2 + 1 ] < input[ i * 2 ])
@@ -54,6 +76,8 @@ std::deque<int> pairCmp(std::deque<int> input) {
 
 	return input;
 }
+
+//
 
 std::deque<int> mergeStk (std::deque<int> left, std::deque<int> right) {
 	std::deque<int> ret;
@@ -100,25 +124,36 @@ std::deque<int> sortMerge (std::deque<int> stk) {
 	return (mergeStk(left, right));
 }
 
+//
+
 void algo(char **nums, int argc) {
 
-	std::deque<int> stack = getInp(nums, argc);
-	std::deque<int> s_stack1;
-	std::deque<int> s_stack2;
+	//	0. Stacks
 
-	stack = pairCmp(stack);
+	std::deque<int> stack = getInp(nums, argc);
+	std::deque<int> chain;
+
+	//	1. Pair swaping
+
+	stack = pairSwap(stack);
 
 	for (int i = 0; i < int(stack.size()); i++) {
 		std::cout << stack[i] << "; ";
 	}
 	std::cout << std::endl;
 
-	for (int i = 0; i < int(stack.size() / 2); i++) {
-		s_stack1.push_back(stack[ i * 2 ]);
-		s_stack2.push_back(stack[ i * 2 + 1 ]);
-	}
+	//	2. Creamos las dos chains, chain 1 contiene los primeros valores de los pares
 
-	s_stack1 = sortMerge(s_stack1);
+	for (int i = 0; i < int(stack.size() / 2); i++)
+		chain.push_back(stack[ i * 2 + 1 ]);
+
+	//	3. Insertion order using Jacobsthal numbers
+
+	std::vector<int> j_numbers = jacobsthal(stack.size());
+
+	
+
+	// chain_2 = sortMerge(chain_2); Lo de arriba
 }
 
 int main (int argc, char **argv) {

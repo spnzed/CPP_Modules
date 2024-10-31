@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:19:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/16 17:21:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:42:08 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,20 @@ int is_digits(std::string& str)
     return 1;
 }
 
-// A valid date will always be in the following format: Year-Month-Day
 
+int count_del(std::string date, char delimiter) {
+    
+    int count = 0;
+    
+    for (int i = 0; i < int(date.size()); i++) {
+        if (date[i] == delimiter)
+            count++;
+    }
+
+    return count > 2 ? 1 : 0;
+}
+
+// A valid date will always be in the following format: Year-Month-Day
 int cmp_date(std::string date) {
     char delimiter = '-';  // Delimitador
 
@@ -113,6 +125,10 @@ int cmp_date(std::string date) {
 
     int i = 0;
     // Separar la cadena por el delimitador
+    if (count_del(date, delimiter)) {
+        std::cout << "Error: bad input => " << date << std::endl;
+        return 1;        
+    }
     while (std::getline(ss, token, delimiter) && i < 3) {
         tokens[i] = trim(token);  // Almacenar cada parte en el arreglo
         i++;
