@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/31 18:19:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:13:07 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <deque>
 #include <vector>
 #include <cstdlib>
+
+struct Stack {
+    int left;
+    int right;
+};
 
 std::vector<int> jacobsthal(int n) {
     std::vector<int> j(n);
@@ -77,54 +82,52 @@ std::deque<int> pairSwap(std::deque<int> input) {
 	return input;
 }
 
-//
-
-std::deque<int> mergeStk (std::deque<int> left, std::deque<int> right) {
-	std::deque<int> ret;
-
-	while (!left.empty() && !right.empty()) {
-		if (left.front() < right.front()) {
-			ret.push_back(left.front());
-			left.pop_front();
-		} else {
-			ret.push_back(right.front());
-			right.pop_front();
-		}
+void sortLeft(Stack* to_sort, int size) {
+	for (int i = 0; i < size; i++) {
+		for (int j = i + 1; j < size; j++)
+			if (to_sort[i].left > to_sort[j].left)
+				std::swap(to_sort[i], to_sort[j]);
 	}
-	
-	while (!left.empty()) {
-		ret.push_back(left.front());
-		left.pop_front();
-	}
-
-	while (!right.empty()) {
-		ret.push_back(right.front());
-		right.pop_front();
-	}
-
-	for (int i = 0; i < int(ret.size()); i++) {
-		std::cout << ret[i] << "; ";
-	}
-	std::cout << std::endl;
-
-	return ret;
 }
 
-std::deque<int> sortMerge (std::deque<int> stk) {
+// Implementación de customUpperBound para buscar en un rango específico de la cadena
+int customUpperBound(const std::deque<int>& chain, int start, int end, int value) {
+    int low = start;
+    int high = end;
 
-	if (stk.size() <= 1) {
-		return stk;
-	}
-	
-	std::deque<int> first(stk.begin(), stk.begin() + (stk.size() / 2));
-	std::deque<int> left = sortMerge(first);
-	std::deque<int> second(stk.begin() + (stk.size() / 2), stk.end());
-	std::deque<int> right = sortMerge(second);
-
-	return (mergeStk(left, right));
+    while (low < high) {
+        int mid = (low + high) / 2;
+        if (chain[mid] <= value) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return low;
 }
 
-//
+void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
+    std::vector<int> j_numbers = jacobsthal(mid);
+
+    // Construir la main-chain inicial con los valores `a`
+    for (int i = 0; i < mid; i++) {
+        chain.push_back(to_sort[i].left);
+    }
+
+    // Insertar los valores `b` en el orden de Jacobsthal
+    for (int i = 0; i < mid; i++) {
+        int b_value = to_sort[i].right;
+
+        // Calcula el rango hasta donde insertar usando el número de Jacobsthal
+        int limit = (j_numbers[i] < static_cast<int>(chain.size())) ? j_numbers[i] : static_cast<int>(chain.size());
+
+        // Usar customUpperBound para buscar la posición de inserción para `b_value`
+        int insert_pos = customUpperBound(chain, 0, limit, b_value);
+
+        // Insertar el valor `b` en la posición encontrada
+        chain.insert(chain.begin() + insert_pos, b_value);
+    }
+}
 
 void algo(char **nums, int argc) {
 
@@ -137,23 +140,47 @@ void algo(char **nums, int argc) {
 
 	stack = pairSwap(stack);
 
+	std::cout << "Pair Swap" << std::endl;
 	for (int i = 0; i < int(stack.size()); i++) {
 		std::cout << stack[i] << "; ";
 	}
 	std::cout << std::endl;
 
-	//	2. Creamos las dos chains, chain 1 contiene los primeros valores de los pares
+	//	2. Creamos las dos chains, en una struct "STACK". Izquierda y derecha
 
-	for (int i = 0; i < int(stack.size() / 2); i++)
-		chain.push_back(stack[ i * 2 + 1 ]);
+	Stack *to_sort = new Stack[stack.size() / 2];
 
-	//	3. Insertion order using Jacobsthal numbers
+	for (int i = 0; i < int(stack.size() / 2); i++) {
+		to_sort[i].left = stack[ i * 2 ];
+		to_sort[i].right = stack[ i * 2 + 1 ];
+	}
+
+	std::cout << "Stack" << std::endl;
+	for (int i = 0; i < int(stack.size() / 2); i++) {
+		std::cout << "[" << to_sort[i].left << ", " << to_sort[i].right << "] ";
+	}
+	std::cout << std::endl;
+
+	//	3. Sortear el stack izquierdo "A1".
+
+	sortLeft(to_sort, stack.size() / 2);
+
+	std::cout << "Sorted A1" << std::endl;
+	for (int i = 0; i < int(stack.size() / 2); i++) {
+		std::cout << "[" << to_sort[i].left << ", " << to_sort[i].right << "] ";
+	}
+	std::cout << std::endl;
+
+	//	4. Insertion order using Jacobsthal numbers
 
 	std::vector<int> j_numbers = jacobsthal(stack.size());
-
 	
-
-	// chain_2 = sortMerge(chain_2); Lo de arriba
+	insertWithJacobsthal(chain, to_sort, stack.size() / 2);
+	std::cout << "Final Chain" << std::endl;
+    for (int i = 0; i < int(chain.size()); i++) {
+        std::cout << chain[i] << "; ";
+    }
+    std::cout << std::endl;
 }
 
 int main (int argc, char **argv) {
