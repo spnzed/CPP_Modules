@@ -46,3 +46,22 @@
 // }
 
 // chain_2 = sortMerge(chain_2); Lo de arriba
+
+    // // Insertar los valores `b` en el orden de Jacobsthal
+    // for (int i = 1; i < mid; i++) {
+    //     int b_value = to_sort[i].right;
+
+    //     // Calcula el rango hasta donde insertar usando el número de Jacobsthal
+	// 	int limit = 0;
+
+    //     if (j_numbers[i] < int(chain.size()))
+	// 		limit = j_numbers[i];
+	// 	else
+	// 		limit = int(chain.size());
+
+    //     // Usar customUpperBound para buscar la posición de inserción para `b_value`
+    //     int insert_pos = customUpperBound(chain, 0, limit, b_value);
+
+    //     // Insertar el valor `b` en la posición encontrada
+    //     chain.insert(chain.begin() + insert_pos, b_value);
+    // }
