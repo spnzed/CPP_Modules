@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/05 19:11:41 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/06 01:10:48 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,17 @@ void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
         chain.push_back(to_sort[i].right);
     }
 
+	std::cout << int(chain.size()) << std::endl;
+
     std::cout << "Deque Chain" << std::endl;
     for (std::deque<int>::iterator it = chain.begin(); it != chain.end(); ++it) {
         std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Deque to Insert" << std::endl;
+	for (int i = 0; i < mid; i++) {
+        std::cout << to_sort[i].left << " ";
     }
     std::cout << std::endl;
 
@@ -135,40 +143,41 @@ void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
     std::cout << std::endl;
 
     // Insertar los valores `b` en el orden de Jacobsthal
-	int prev = 0;
+	int prev = 1;
 	int limit = 0;
 
     for (int i = 1; i < mid; i++) {
 	
         // Calcula el rango de numeros que insertaremos de B1->A1
-        if (j_numbers[i] < int(chain.size())) {
+        if (j_numbers[i] <= int(chain.size())) {
 			limit += j_numbers[i];
-        	if (int(chain.size()) < limit) {
+        	if (limit > int(chain.size())) {
 				limit = int(chain.size());
 			}
 		}
 		else
 			limit = int(chain.size());
 
-		//	Insertamos todo lo de 
-		for (int j = limit; j > 1 ; j--) {
-			if (j > prev && j < mid) {
-				int b_value = to_sort[j].left;
-
-				// Usar customUpperBound para buscar la posición de inserción para `b_value`
-				int insert_pos = customUpperBound(chain, 0, limit, b_value);
-
-				// Insertar el valor `b` en la posición encontrada
-				chain.insert(chain.begin() + insert_pos, b_value);	
-			} else {
-				break ;
-			}
+		//	Insertamos todo lo de
+		for (int j = limit - 1; j >= prev && j < mid; j--) {
+			int b_value = to_sort[j].left;
+			int insert_pos = customUpperBound(chain, 0, limit, b_value);
+			std::cout << "Limit " << limit << std::endl;
+			std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
+			chain.insert(chain.begin() + insert_pos, b_value);
 		}
 
-		if (limit == int(chain.size()))
-			break ;
-		else
-			prev = limit;
+		// ESTO LO HACE
+
+		// for (int j = prev; j < limit && j < mid; j++) {
+		// 	int b_value = to_sort[j].left;
+		// 	int insert_pos = customUpperBound(chain, 0, limit, b_value);
+		// 	std::cout << "Limit " << limit << std::endl;
+		// 	std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
+		// 	chain.insert(chain.begin() + insert_pos, b_value);
+		// }
+
+		prev = limit;
     }
 }
 

@@ -65,3 +65,31 @@
     //     // Insertar el valor `b` en la posición encontrada
     //     chain.insert(chain.begin() + insert_pos, b_value);
     // }
+
+
+
+
+
+		// for (int j = limit - 1; j > 1 ; j--) {
+		// 	if (j > prev && j < mid) {
+		// 		int b_value = to_sort[j].left;
+
+		// 		// Usar customUpperBound para buscar la posición de inserción para `b_value`
+		// 		int insert_pos = customUpperBound(chain, 0, limit, b_value);
+
+		// 		std::cout << "Limit " << limit << std::endl;
+		// 		std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
+
+		// 		// Insertar el valor `b` en la posición encontrada
+		// 		chain.insert(chain.begin() + insert_pos, b_value);	
+		// 	} else {
+		// 		break ;
+		// 	}
+		// }
+
+		// if (limit == int(chain.size()))
+		// 	break ;
+		// else
+		// if (limit == int(chain.size())) {
+		// 	break;
+		// }
