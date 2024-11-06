@@ -6,11 +6,19 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/06 01:10:48 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/06 17:19:18 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/PmergeMe.hpp"
+
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN "\033[36m"
+#define RESET "\033[0m"
 
 #include <deque>
 #include <vector>
@@ -109,75 +117,82 @@ int customUpperBound(const std::deque<int>& chain, int start, int end, int value
 void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
     std::vector<int> j_numbers = jacobsthal(mid);
 
-    std::cout << "JacobSthal" << std::endl;
-	for (std::vector<int>::iterator it = j_numbers.begin(); it != j_numbers.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << MAGENTA << "JacobSthal" << std::endl;
+	// for (std::vector<int>::iterator it = j_numbers.begin(); it != j_numbers.end(); ++it) {
+    //     std::cout << *it << " ";
+    // }
+    // std::cout << RESET << std::endl;
 
     // Construir la main-chain inicial con los valores `a`
     for (int i = 0; i < mid; i++) {
         chain.push_back(to_sort[i].right);
     }
 
-	std::cout << int(chain.size()) << std::endl;
+	// std::cout << int(chain.size()) << std::endl;
 
-    std::cout << "Deque Chain" << std::endl;
-    for (std::deque<int>::iterator it = chain.begin(); it != chain.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << BLUE << "Deque Chain" << std::endl;
+    // for (std::deque<int>::iterator it = chain.begin(); it != chain.end(); ++it) {
+    //     std::cout << *it << " ";
+    // }
+    // std::cout << RESET << std::endl;
 
-    std::cout << "Deque to Insert" << std::endl;
-	for (int i = 0; i < mid; i++) {
-        std::cout << to_sort[i].left << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << RED << "Deque to Insert" << std::endl;
+	// for (int i = 0; i < mid; i++) {
+    //     std::cout << to_sort[i].left << " ";
+    // }
+    // std::cout << RESET << std::endl;
 
 	chain.push_front(to_sort[0].left);
 
-	std::cout << "After pushing def" << std::endl;
-    for (std::deque<int>::iterator it = chain.begin(); it != chain.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+	// std::cout << "After pushing def" << std::endl;
+    // for (std::deque<int>::iterator it = chain.begin(); it != chain.end(); ++it) {
+    //     std::cout << *it << " ";
+    // }
+    // std::cout << std::endl;
 
     // Insertar los valores `b` en el orden de Jacobsthal
-	int prev = 1;
+	int prev = 0;
 	int limit = 0;
 
+	// std::cout << "Mid " << mid << std::endl;
     for (int i = 1; i < mid; i++) {
 	
         // Calcula el rango de numeros que insertaremos de B1->A1
-        if (j_numbers[i] <= int(chain.size())) {
+        if (j_numbers[i] <= mid)
 			limit += j_numbers[i];
-        	if (limit > int(chain.size())) {
-				limit = int(chain.size());
-			}
-		}
-		else
-			limit = int(chain.size());
+
+        if (limit > mid)
+			limit = mid - 1;
 
 		//	Insertamos todo lo de
-		for (int j = limit - 1; j >= prev && j < mid; j--) {
+		for (int j = limit; j > prev && j <= mid; j--) {
+
+			// std::cout << std::endl;
+			// std::cout << j << " >= " << prev << " && " << j << " < " << mid << std::endl;
+			// std::cout << "ʌ" << "    " << "ʌ" << "    " << "ʌ" << std::endl;
+			// std::cout << "|" << "    " << "|" << "    " << "|" << std::endl;
+			// std::cout << "j" << "  " << "prev" << "   " << "j" << std::endl;
+			// std::cout << std::endl;
 			int b_value = to_sort[j].left;
-			int insert_pos = customUpperBound(chain, 0, limit, b_value);
-			std::cout << "Limit " << limit << std::endl;
-			std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
+			int insert_pos = customUpperBound(chain, 0, int(chain.size()), b_value);
+			// std::cout << "From " << YELLOW << prev << RESET ;
+			// std::cout << " to " << GREEN << limit << RESET << std::endl;
+			// std::cout << "Jacob 'i' " << YELLOW << "[" << i << "]" << RESET ;
+			// std::cout << " deque to insert 'j' " << GREEN << "[" << j << "]" << RESET << std::endl;
+			// std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
 			chain.insert(chain.begin() + insert_pos, b_value);
+
+			// std::cout << BLUE << "Deque Chain after insertion of: " << RED << b_value << BLUE << std::endl;
+			// for (std::deque<int>::iterator it = chain.begin(); it != chain.end(); ++it) {
+			// 	std::cout << *it << " ";
+			// }
+			// std::cout << RESET << std::endl;
+
+			if (j - 1 == prev) {
+				prev = limit;
+			}
+			
 		}
-
-		// ESTO LO HACE
-
-		// for (int j = prev; j < limit && j < mid; j++) {
-		// 	int b_value = to_sort[j].left;
-		// 	int insert_pos = customUpperBound(chain, 0, limit, b_value);
-		// 	std::cout << "Limit " << limit << std::endl;
-		// 	std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
-		// 	chain.insert(chain.begin() + insert_pos, b_value);
-		// }
-
-		prev = limit;
     }
 }
 
@@ -192,11 +207,11 @@ void algo(char **nums, int argc) {
 
 	stack = pairSwap(stack);
 
-	std::cout << "Pair Swap" << std::endl;
-	for (int i = 0; i < int(stack.size()); i++) {
-		std::cout << stack[i] << "; ";
-	}
-	std::cout << std::endl;
+	// std::cout << "Pair Swap" << std::endl;
+	// for (int i = 0; i < int(stack.size()); i++) {
+	// 	std::cout << stack[i] << "; ";
+	// }
+	// std::cout << std::endl;
 
 	//	2. Creamos las dos chains, en una struct "STACK". Izquierda y derecha
 
@@ -207,21 +222,21 @@ void algo(char **nums, int argc) {
 		to_sort[i].right = stack[ i * 2 + 1 ];
 	}
 
-	std::cout << "Stack" << std::endl;
-	for (int i = 0; i < int(stack.size() / 2); i++) {
-		std::cout << "[" << to_sort[i].left << ", " << to_sort[i].right << "] ";
-	}
-	std::cout << std::endl;
+	// std::cout << "Stack" << std::endl;
+	// for (int i = 0; i < int(stack.size() / 2); i++) {
+	// 	std::cout << "[" << to_sort[i].left << ", " << to_sort[i].right << "] ";
+	// }
+	// std::cout << std::endl;
 
 	//	3. Sortear el stack izquierdo "A1".
 
 	sortRight(to_sort, stack.size() / 2);
 
-	std::cout << "Sorted A1" << std::endl;
-	for (int i = 0; i < int(stack.size() / 2); i++) {
-		std::cout << "[" << to_sort[i].left << ", " << to_sort[i].right << "] ";
-	}
-	std::cout << std::endl;
+	// std::cout << "Sorted A1" << std::endl;
+	// for (int i = 0; i < int(stack.size() / 2); i++) {
+	// 	std::cout << "[" << to_sort[i].left << ", " << to_sort[i].right << "] ";
+	// }
+	// std::cout << std::endl;
 
 	//	4. Insertion order using Jacobsthal numbers
 	

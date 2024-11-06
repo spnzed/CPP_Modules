@@ -93,3 +93,13 @@
 		// if (limit == int(chain.size())) {
 		// 	break;
 		// }
+
+        		// ESTO LO HACE
+
+		// for (int j = prev; j < limit && j < mid; j++) {
+		// 	int b_value = to_sort[j].left;
+		// 	int insert_pos = customUpperBound(chain, 0, limit, b_value);
+		// 	std::cout << "Limit " << limit << std::endl;
+		// 	std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
+		// 	chain.insert(chain.begin() + insert_pos, b_value);
+		// }
