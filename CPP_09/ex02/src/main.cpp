@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/07 16:36:09 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/07 17:00:32 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,9 @@ int customUpperBound(const std::deque<int>& chain, int start, int end, int value
 void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
     std::vector<int> j_numbers = jacobsthal(mid);
 
-    // for (int i = 0; i < mid; i++) {
-	//     chain.push_back(to_sort[i].right);
-    // }
+    for (int i = 0; i < mid; i++) {
+	    chain.push_back(to_sort[i].right);
+    }
 
 	chain.push_front(to_sort[0].left);
 
@@ -152,28 +152,38 @@ void printToSort(const Stack* to_sort, int size) {
     }
 }
 
-void mergeInsert(std::deque<int>& chain, Stack* to_sort, int start, int end) {
+// Función auxiliar para intercambiar elementos en `to_sort`
+void insertInOrder(Stack* to_sort, int index, int end) {
+    Stack temp = to_sort[index];
+    int pos = index;
+
+    // Encontrar la posición correcta usando `right`
+    while (pos < end && to_sort[pos + 1].right < temp.right) {
+        to_sort[pos] = to_sort[pos + 1];
+        ++pos;
+    }
+    to_sort[pos] = temp;
+}
+
+// Ordena `to_sort` usando un enfoque recursivo y el valor `right` de cada `Stack`
+void mergeInsert(Stack* to_sort, int start, int end) {
     // Caso base: si el segmento tiene un solo elemento o está vacío
     if (start > end) {
         return;
     }
     if (start == end) {
-        // Insertar solo el elemento `right` de `to_sort[start]` en `chain` en orden
-        std::deque<int>::iterator it = std::lower_bound(chain.begin(), chain.end(), to_sort[start].right);
-        chain.insert(it, to_sort[start].right);
-        return;
+        return;  // No hay nada que ordenar en un solo elemento
     }
 
     // Encuentra el punto medio
     int middle = start + (end - start) / 2;
 
     // Llamadas recursivas para las dos mitades
-    mergeInsert(chain, to_sort, start, middle - 1); // Mitad izquierda
-    mergeInsert(chain, to_sort, middle + 1, end);   // Mitad derecha
+    mergeInsert(to_sort, start, middle - 1); // Mitad izquierda
+    mergeInsert(to_sort, middle + 1, end);   // Mitad derecha
 
-    // Insertar solo el elemento `right` de `to_sort[middle]` en `chain` de forma ordenada
-    std::deque<int>::iterator it = std::lower_bound(chain.begin(), chain.end(), to_sort[middle].right);
-    chain.insert(it, to_sort[middle].right);
+    // Insertar el elemento `right` de `to_sort[middle]` en el lugar ordenado en `to_sort`
+    insertInOrder(to_sort, middle, end);
 }
 
 void algo(char **nums, int argc) {
@@ -196,7 +206,7 @@ void algo(char **nums, int argc) {
 	printToSort(to_sort, to_sort_size);
 
     // 3. Llamar a mergeInsert para ordenar e insertar
-    mergeInsert(chain, to_sort, 0, to_sort_size - 1);
+    mergeInsert(to_sort, 0, to_sort_size - 1);
 
     // 4. Imprimir cadena A1
     std::cout << "Chain A:" << std::endl;
