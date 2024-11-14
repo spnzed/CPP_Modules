@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/14 16:41:49 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:50:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ struct Stack {
     std::vector<Stack_node> left;
     std::vector<Stack_node> right;
 };
-
-std::deque<int> pairSwap(std::deque<int> input) {
-
-	for (int i = 0; i < int(input.size() / 2); i++) {
-		if (input[ i * 2 + 1 ] < input[ i * 2 ])
-			std::swap(input[ i * 2 ], input[ i * 2 + 1]);
-	}
-
-	return input;
-}
 
 int search_pos(int num, std::deque<int>& chain) {
     for (int i = 0; i < int(chain.size()); ++i) {
@@ -82,80 +72,100 @@ void insertWithJacobsthal(std::deque<int>& chain, Stack_node* to_sort, int mid) 
     }
 }
 
-void mergeInsert(std::deque<int>& chain, Stack_node* to_sort, int start, int end) {
-    // Caso base: si el segmento tiene un solo elemento o está vacío
-    if (start > end) {
-        return;
+std::deque<int> pairSwap(Stack_node* to_sort, int end, int group_size) {
+    std::deque<int> result;
+
+    // Si el tamaño del grupo es 0, se asegura que el valor más grande esté en la posición 'right' de cada pareja
+    if (group_size == 0) {
+        for (int i = 0; i < end; ++i) {
+            // Si el valor de 'left' es mayor que 'right', los intercambiamos
+            if (to_sort[i].left > to_sort[i].right) {
+                std::swap(to_sort[i].left, to_sort[i].right);
+                // std::swap_ranges(it, it + group_size - 1, it + group_size);
+            }
+        }
+    } else {
+        // Recorremos los pares para comparar grupos de tamaño 'size'
+        for (int i = 0; i + group_size < end; i += group_size * 2) {
+            // Si estamos comparando el último grupo que no llena el tamaño, no lo procesamos
+            if (i + group_size * 2 > end) break;
+
+            // Comparar la última pareja de cada grupo
+            int rightmost_first_group = to_sort[i + group_size - 1].right;
+            int rightmost_second_group = to_sort[i + group_size * 2 - 1].right;
+
+            // Si el valor 'right' del primer grupo es mayor, se intercambian las parejas
+            if (rightmost_first_group > rightmost_second_group) {
+                for (int j = 0; j < group_size; ++j) {
+                    std::swap(to_sort[i + j], to_sort[i + group_size + j]);
+                }
+            }
+        }
     }
-    if (start == end) {
-        // Insertar solo el elemento `right` de `to_sort[start]` en `chain` en orden
-        std::deque<int>::iterator it = std::lower_bound(chain.begin(), chain.end(), to_sort[start].right);
-        chain.insert(it, to_sort[start].right);
-        return;
+
+    // Recopilar los resultados en el deque
+    for (int i = 0; i < end; i++) {
+        result.push_back(to_sort[i].left);
+        result.push_back(to_sort[i].right);
     }
 
-    // Encuentra el punto medio
-    int middle = start + (end - start) / 2;
-
-    // Llamadas recursivas para las dos mitades
-    mergeInsert(chain, to_sort, start, middle - 1); // Mitad izquierda
-    mergeInsert(chain, to_sort, middle + 1, end);   // Mitad derecha
-
-    // Insertar solo el elemento `right` de `to_sort[middle]` en `chain` de forma ordenada
-    std::deque<int>::iterator it = std::lower_bound(chain.begin(), chain.end(), to_sort[middle].right);
-    chain.insert(it, to_sort[middle].right);
+    return result;
 }
 
-void algo(char **nums, int argc) {
-    // 0. Stacks
-    std::deque<int> stack = getInp(nums, argc);
-    std::deque<int> chain;
+void msi(std::deque<int>& chain, std::deque<int>& stack, int start, int end, int size) {
+
+    // Caso base: si el segmento tiene un solo elemento o está vacío
+    if (size > end) {
+        return;
+    }
+
+    // // Asegurarse de que `end` no sea menor que el número de elementos
+    int actual_end = end;
+
+    if (stack.size() % 2 != 0) {
+        end -= size;
+    }
+
+    (void)actual_end;
 
     // 1. Pair swapping
-    stack = pairSwap(stack);
+    Stack_node* to_sort = new Stack_node[end];
 
-    // 2. Crear las dos cadenas en una estructura "Stack". Izquierda y derecha
-    int to_sort_size = stack.size() / 2;
-    Stack_node* to_sort = new Stack_node[to_sort_size];
-
-    for (int i = 0; i < to_sort_size; i++) {
+    for (int i = 0; i < end; i++) {
         to_sort[i].left = stack[i * 2];
         to_sort[i].right = stack[i * 2 + 1];
     }
 
-	printToSort(to_sort, to_sort_size);
+    stack = pairSwap(to_sort, end, size);
 
-    // 3. Llamar a mergeInsert para ordenar e insertar
-    mergeInsert(chain, to_sort, 0, to_sort_size - 1);
+    printChain(stack);
 
-    // 4. Imprimir cadena A1
-    std::cout << "Chain A:" << std::endl;
-    for (int i = 0; i < int(chain.size()); i++) {
-        std::cout << chain[i] << "; ";
-    }
-    std::cout << std::endl;
-
-	insertWithJacobsthal(chain, to_sort, stack.size() / 2);
-
-	// 4. Imprimir final
-    std::cout << "Final Chain:" << std::endl;
-    for (int i = 0; i < int(chain.size()); i++) {
-        std::cout << chain[i] << "; ";
-    }
-    std::cout << std::endl;
-
-    // Liberar memoria
     delete[] to_sort;
+
+    if (size == 0) {
+        msi(chain, stack, start, end, 1);
+    } else {
+        msi(chain, stack, start, end, size * 2);
+    }
+}
+
+void algo(char **nums, int argc) {
+    // 0. Stacks & size
+    std::deque<int> stack = getInp(nums, argc);
+    std::deque<int> chain;
+    int to_sort_size = stack.size() / 2;
+
+    // 3. Llamar a msi para ordenar e insertar
+    msi(chain, stack, 0, to_sort_size, 0);
 }
 
 int main (int argc, char **argv) {
-
-	if (argc <= 2) {
-		std::cout << "Error: invalid input." << std::endl;
-		return 1;
-	} else {
-		if (compArgs(argv, argc))
-			algo(argv, argc);
-	}
-	return 0;
+    if (argc <= 2) {
+        std::cout << "Error: invalid input." << std::endl;
+        return 1;
+    } else {
+        if (compArgs(argv, argc))
+            algo(argv, argc);
+    }
+    return 0;
 }

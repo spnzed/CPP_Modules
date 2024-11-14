@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:29:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/11/14 16:37:01 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:22:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,13 @@ void printToSort(const Stack_node* to_sort, int size) {
         std::cout << "Left: " << it->left << ", Right: " << it->right << std::endl;
     }
 }
+
+// std::deque<int> pairSwap(std::deque<int> input) {
+
+// 	for (int i = 0; i < int(input.size() / 2); i++) {
+// 		if (input[ i * 2 + 1 ] < input[ i * 2 ])
+// 			std::swap(input[ i * 2 ], input[ i * 2 + 1]);
+// 	}
+
+// 	return input;
+// }
