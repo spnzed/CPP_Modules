@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe_utils.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
+/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:29:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/11/07 22:34:54 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/14 16:37:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <vector>
 #include <cstdlib>
 
-struct Stack {
+struct Stack_node {
     int left;
     int right;
 };
@@ -79,6 +79,21 @@ std::deque<int> getInp(char **nums, int argc) {
 	return main;
 }
 
+int customUpperBound(const std::deque<int>& chain, int start, int end, int value) {
+    int low = start;
+    int high = end;
+
+    while (low < high) {
+        int mid = (low + high) / 2;
+        if (chain[mid] <= value) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return low;
+}
+
 void printChain(const std::deque<int>& chain) {
     std::cout << "Final Chain:" << std::endl;
     for (std::deque<int>::const_iterator it = chain.begin(); it != chain.end(); ++it) {
@@ -87,9 +102,9 @@ void printChain(const std::deque<int>& chain) {
     std::cout << std::endl;
 }
 
-void printToSort(const Stack* to_sort, int size) {
+void printToSort(const Stack_node* to_sort, int size) {
     std::cout << "Contents of to_sort:" << std::endl;
-    for (const Stack* it = to_sort; it < to_sort + size; ++it) {
+    for (const Stack_node* it = to_sort; it < to_sort + size; ++it) {
         std::cout << "Left: " << it->left << ", Right: " << it->right << std::endl;
     }
 }

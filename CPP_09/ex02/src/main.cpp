@@ -6,11 +6,12 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/14 16:23:33 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:41:49 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/PmergeMe.hpp"
+#include "PmergeMe_utils.cpp"
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -25,60 +26,9 @@
 #include <cstdlib>
 
 struct Stack {
-    int left;
-    int right;
+    std::vector<Stack_node> left;
+    std::vector<Stack_node> right;
 };
-
-std::vector<int> jacobsthal(int n) {
-    std::vector<int> j(n);
-    if (n > 0) j[0] = 0 * 2;
-    if (n > 1) j[1] = 1 * 2;
-    for (int i = 2; i < n; ++i) {
-        j[i] = (j[i - 1] + 2 * j[i - 2]);
-    }
-    return j;
-}
-
-int compRep(int target, char** set, int limit) {
-
-	for (int i = 0; i < limit; i++) {
-		if (target == atoi(set[i]))
-			return 1;
-	}
-
-	return 0;
-}
-
-int compArgs(char **argv, int argc) {
-
-	for (int i = 1; i < argc; i++) {
-		try {
-			int num = atoi(argv[i]);
-
-			if (compRep(num, argv + 1, i - 1))
-				return 0;
-			if (num < 1) {
-				std::cout << "Error" << std::endl;
-				return 0;
-			}
-		} catch (std::exception & e) {
-			std::cout << "Error" << std::endl;
-			return 0;
-		}
-	}
-	return 1;
-}
-
-std::deque<int> getInp(char **nums, int argc) {
-	
-	std::deque<int> main;
-
-	for (int i = 1; i < argc; i++) {
-		main.push_back(atoi(nums[ i ]));
-	}
-
-	return main;
-}
 
 std::deque<int> pairSwap(std::deque<int> input) {
 
@@ -90,21 +40,6 @@ std::deque<int> pairSwap(std::deque<int> input) {
 	return input;
 }
 
-int customUpperBound(const std::deque<int>& chain, int start, int end, int value) {
-    int low = start;
-    int high = end;
-
-    while (low < high) {
-        int mid = (low + high) / 2;
-        if (chain[mid] <= value) {
-            low = mid + 1;
-        } else {
-            high = mid;
-        }
-    }
-    return low;
-}
-
 int search_pos(int num, std::deque<int>& chain) {
     for (int i = 0; i < int(chain.size()); ++i) {
         if (chain[i] == num) {
@@ -114,7 +49,7 @@ int search_pos(int num, std::deque<int>& chain) {
     return -1; // Devuelve -1 si no encuentra el número
 }
 
-void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
+void insertWithJacobsthal(std::deque<int>& chain, Stack_node* to_sort, int mid) {
     std::vector<int> j_numbers = jacobsthal(mid);
 
     // for (int i = 0; i < mid; i++) {
@@ -147,22 +82,7 @@ void insertWithJacobsthal(std::deque<int>& chain, Stack* to_sort, int mid) {
     }
 }
 
-void printChain(const std::deque<int>& chain) {
-    std::cout << "Final Chain:" << std::endl;
-    for (std::deque<int>::const_iterator it = chain.begin(); it != chain.end(); ++it) {
-        std::cout << *it << "; ";
-    }
-    std::cout << std::endl;
-}
-
-void printToSort(const Stack* to_sort, int size) {
-    std::cout << "Contents of to_sort:" << std::endl;
-    for (const Stack* it = to_sort; it < to_sort + size; ++it) {
-        std::cout << "Left: " << it->left << ", Right: " << it->right << std::endl;
-    }
-}
-
-void mergeInsert(std::deque<int>& chain, Stack* to_sort, int start, int end) {
+void mergeInsert(std::deque<int>& chain, Stack_node* to_sort, int start, int end) {
     // Caso base: si el segmento tiene un solo elemento o está vacío
     if (start > end) {
         return;
@@ -196,7 +116,7 @@ void algo(char **nums, int argc) {
 
     // 2. Crear las dos cadenas en una estructura "Stack". Izquierda y derecha
     int to_sort_size = stack.size() / 2;
-    Stack* to_sort = new Stack[to_sort_size];
+    Stack_node* to_sort = new Stack_node[to_sort_size];
 
     for (int i = 0; i < to_sort_size; i++) {
         to_sort[i].left = stack[i * 2];
