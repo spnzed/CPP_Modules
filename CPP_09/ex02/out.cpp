@@ -103,3 +103,16 @@
 		// 	std::cout << "Inserting " << b_value << " at position " << insert_pos << std::endl;
 		// 	chain.insert(chain.begin() + insert_pos, b_value);
 		// }
+
+
+		// std::deque<int>& get_chain(std::deque<int>& chain, std::deque<int>& stack, int end) {
+//     chain.resize(end, 0);
+
+//     for (int i = 0; i < end; i++) {
+//         if (i * 2 + 1 < int(stack.size())) {
+//             chain[i] = stack[i * 2 + 1];  // Corregir el índice para evitar desbordamientos
+//         }
+//     }
+
+//     return chain;
+// }

@@ -6,17 +6,18 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:29:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/11/14 17:22:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:24:07 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// Códigos ANSI para colores
+#define RESET "\033[0m"
+#define BOLD "\033[1m"
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 #define BLUE "\033[34m"
-#define MAGENTA "\033[35m"
 #define CYAN "\033[36m"
-#define RESET "\033[0m"
 
 #include <iostream>
 #include <deque>
@@ -94,12 +95,50 @@ int customUpperBound(const std::deque<int>& chain, int start, int end, int value
     return low;
 }
 
-void printChain(const std::deque<int>& chain) {
-    std::cout << "Final Chain:" << std::endl;
-    for (std::deque<int>::const_iterator it = chain.begin(); it != chain.end(); ++it) {
-        std::cout << *it << "; ";
+
+void printDeque(const std::deque<int>& stack, int size, const std::string& name) {
+    // Título de la pila
+    if (!name.empty()) {
+        
+        if (size > 0) {
+            std::cout << BOLD << name << ". Size: " << size << RESET << std::endl;
+        } else if (size == 0) {
+            std::cout << BOLD << name << ". Size: " << size + 1 << RESET << std::endl;
+        }
+    } else {
+        std::cout << BOLD << "Size: " << size << RESET << std::endl;
     }
-    std::cout << std::endl;
+
+    if (size < 0) {
+        std::cerr << RED << "Size cannot be negative." << RESET << std::endl;
+        return;
+    }
+
+    int count = 0; // Contador dentro del grupo actual
+    bool newGroup = true;
+
+    for (std::deque<int>::const_iterator it = stack.begin(); it != stack.end(); ++it) {
+        if (newGroup) {
+            std::cout << BLUE << "[" << RESET; // Abre un nuevo grupo con color azul
+            newGroup = false;
+        }
+
+        std::cout << GREEN << *it << RESET; // Elementos del grupo en verde
+        ++count;
+
+        // Determina si cerrar el grupo actual
+        std::deque<int>::const_iterator nextIt = it;
+        ++nextIt;
+        if (count == size || nextIt == stack.end()) {
+            std::cout << BLUE << "] " << RESET; // Cierra el grupo con azul
+            count = 0; // Reinicia el contador
+            newGroup = true;
+        } else {
+            std::cout << YELLOW << ", " << RESET; // Separador en amarillo
+        }
+    }
+
+    std::cout << std::endl; // Salto de línea al final para mejorar legibilidad
 }
 
 void printToSort(const Stack_node* to_sort, int size) {
