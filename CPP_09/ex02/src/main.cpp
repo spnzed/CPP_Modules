@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/18 19:31:26 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:09:42 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,16 @@ void insertWithJacobsthal(std::deque<int>& stack, int end, int group_size) {
     std::deque<int> chain_B = getStack(stack, int(stack.size()), group_size, 1);
     printDeque(chain_B, group_size, "Stack b [Big]");
 
-    return ;
 
     // Se asume que jacobsthal devuelve una secuencia de números
-    std::vector<int> j_numbers = jacobsthal(end);
+    std::vector<int> j_numbers = jacobsthal(int(chain_B.size()) / group_size);
 
     // Añadir el primer valor a la cadena
-    chain_B.push_front(stack[0]);
+    chain_B.insert( chain_B.begin(), stack.begin(), stack.begin() + group_size );
+
+    printDeque(chain_B, group_size, "Stack b (AFTER FIRST INSERTION)");
+
+    return ;
 
     int prev = 0;
     int limit = 0;
