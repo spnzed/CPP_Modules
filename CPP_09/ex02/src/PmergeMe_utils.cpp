@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 22:29:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/11/18 19:24:07 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/19 18:40:33 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #define YELLOW "\033[33m"
 #define BLUE "\033[34m"
 #define CYAN "\033[36m"
+#define HIGHLIGHT "\033[1;41m" // Fondo rojo con texto en negrita
+#define MAGENTA "\033[35m"
+
 
 #include <iostream>
 #include <deque>
@@ -80,7 +83,7 @@ std::deque<int> getInp(char **nums, int argc) {
 	return main;
 }
 
-int customUpperBound(const std::deque<int>& chain, int start, int end, int value) {
+int binarySearch(const std::deque<int>& chain, int start, int end, int value) {
     int low = start;
     int high = end;
 
@@ -95,16 +98,10 @@ int customUpperBound(const std::deque<int>& chain, int start, int end, int value
     return low;
 }
 
-
 void printDeque(const std::deque<int>& stack, int size, const std::string& name) {
     // Título de la pila
     if (!name.empty()) {
-        
-        if (size > 0) {
-            std::cout << BOLD << name << ". Size: " << size << RESET << std::endl;
-        } else if (size == 0) {
-            std::cout << BOLD << name << ". Size: " << size + 1 << RESET << std::endl;
-        }
+        std::cout << BOLD << name << ". Size: " << size << RESET << std::endl;
     } else {
         std::cout << BOLD << "Size: " << size << RESET << std::endl;
     }
@@ -114,25 +111,41 @@ void printDeque(const std::deque<int>& stack, int size, const std::string& name)
         return;
     }
 
-    int count = 0; // Contador dentro del grupo actual
+    int count = 0;       // Contador dentro del grupo actual
+    int blockIndex = 1;  // Índice del bloque actual
     bool newGroup = true;
 
     for (std::deque<int>::const_iterator it = stack.begin(); it != stack.end(); ++it) {
         if (newGroup) {
-            std::cout << BLUE << "[" << RESET; // Abre un nuevo grupo con color azul
+            if (name == "Full Stack" && blockIndex == 5) {
+                std::cout << MAGENTA << "["; // Bloque 5 en magenta
+            } else {
+                std::cout << BLUE << "["; // Otros bloques en azul
+            }
             newGroup = false;
         }
 
-        std::cout << GREEN << *it << RESET; // Elementos del grupo en verde
+        // Verificar si es el último número del quinto bloque (solo para "Full Stack")
+        std::deque<int>::const_iterator nextIt = it;
+        ++nextIt; // Avanzar manualmente el iterador
+        if (name == "Full Stack" && blockIndex == 5 && (count + 1 == size || nextIt == stack.end())) {
+            std::cout << HIGHLIGHT << *it << RESET; // Último número llamativo
+        } else {
+            std::cout << GREEN << *it << RESET; // Otros números en verde
+        }
+
         ++count;
 
         // Determina si cerrar el grupo actual
-        std::deque<int>::const_iterator nextIt = it;
-        ++nextIt;
         if (count == size || nextIt == stack.end()) {
-            std::cout << BLUE << "] " << RESET; // Cierra el grupo con azul
+            if (name == "Full Stack" && blockIndex == 5) {
+                std::cout << MAGENTA << "] " << RESET; // Cierra el quinto bloque en magenta
+            } else {
+                std::cout << BLUE << "] " << RESET; // Cierra otros bloques en azul
+            }
             count = 0; // Reinicia el contador
             newGroup = true;
+            ++blockIndex; // Incrementa el índice del bloque
         } else {
             std::cout << YELLOW << ", " << RESET; // Separador en amarillo
         }

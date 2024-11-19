@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/19 12:09:42 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/19 18:42:36 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ struct Stack {
     std::vector<Stack_node> right;
 };
 
-int search_pos(int num, std::deque<int>& chain) {
-    for (int i = 0; i < int(chain.size()); ++i) {
+int search_pos(int num, std::deque<int>& chain, int size) {
+
+    for (int i = size - 1; i < int(chain.size()); i+=size) {
         if (chain[i] == num) {
             return i; // Devuelve la posición si encuentra el número
         }
@@ -48,15 +49,8 @@ int search_pos(int num, std::deque<int>& chain) {
 std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int side) {
     std::deque<int> chain;
 
-    std::cout << std::endl;
-    // if (side == 0) {
-    printDeque(stack, 0, "Full Stack");
-    //     std::cout << std::endl;
-    // }
-
     if (group_size > 0) {
         if (side == 0) {
-            // Para el lado 0, procesamos con el criterio definido (por ejemplo, grupo desde el inicio).
             std::deque< int >::iterator it = stack.begin();
             size_t pos = 0;
             while ( pos + group_size <= stack.size() ) {
@@ -64,7 +58,6 @@ std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int si
                 pos += group_size * 2;
             }
         } else {
-            // Para el lado 0, procesamos con el criterio definido (por ejemplo, grupo desde el inicio).
             std::deque< int >::iterator it = stack.begin();
             size_t pos = group_size;
             while ( pos + group_size <= stack.size() ) {
@@ -84,13 +77,6 @@ std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int si
         }
     }
 
-    // if (side == 0)
-    //     printDeque(chain, group_size, "Stack a [Little]");
-    // if (side == 1) {
-        // printDeque(chain, group_size, "Stack b [Big]");
-    //     std::cout << std::endl;
-    // }
-
     return chain;
 }
 
@@ -98,34 +84,46 @@ std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int si
 void insertWithJacobsthal(std::deque<int>& stack, int end, int group_size) {
 
     std::deque<int> chain_B = getStack(stack, int(stack.size()), group_size, 1);
-    printDeque(chain_B, group_size, "Stack b [Big]");
-
+    printDeque(stack, group_size, "Full Stack");
+    // printDeque(chain_B, group_size, "Stack b [Big]");
 
     // Se asume que jacobsthal devuelve una secuencia de números
     std::vector<int> j_numbers = jacobsthal(int(chain_B.size()) / group_size);
 
-    // Añadir el primer valor a la cadena
     chain_B.insert( chain_B.begin(), stack.begin(), stack.begin() + group_size );
 
     printDeque(chain_B, group_size, "Stack b (AFTER FIRST INSERTION)");
 
-    return ;
-
     int prev = 0;
     int limit = 0;
 
-    for (int i = 1; i < end; i++) {
-        if (j_numbers[i] <= end)
-            limit += j_numbers[i];
-        if (limit > end)
-            limit = end - 1;
-        for (int j = limit -1; j > prev && j <= end; j-=2) {
-            int b_value = stack[j];
-            int b_pair = search_pos(stack[j + 1], chain_B);
-            int insert_pos = customUpperBound(chain_B, 0, b_pair, b_value);
+    int it_end = end / group_size;
+    it_end = (it_end % 2 != 0) ? it_end - 1 : it_end;
 
+    int it_size = group_size;
+
+    for (int i = 1; i < it_end; i++) {
+                                                                                                                                    // std::cout << "Jacob Index: " << j_numbers[i] << std::endl; 
+        if (j_numbers[i] <= it_end)
+            limit += (((j_numbers[i]) * group_size) * 2) + group_size - 1;
+
+        if (limit > it_end * group_size)
+            limit = ((it_end - 1) * group_size) - 1;
+                                                                                                                                    // std::cout << "Limit: " << limit << RED << " EXPECTED: " << stack[ limit ] << RESET << std::endl; 
+                                                                                                                                    // std::cout << "ItEnd: " << it_end << std::endl; 
+        for (int j = limit; j > prev && j <= end; j-=it_size) {
+                                                                                                                                    // std::deque< int >::iterator it = stack.begin() + group_size;
+            int a_value = stack[j + group_size];
+                                                                                                                                        // std::cout << "AVALUE: " << a_value << std::endl; 
+            int b_position = search_pos(a_value, chain_B, group_size);
+
+            int insert_pos = binarySearch(chain_B, 0, b_position, a_value);
+
+            std::cout << chain_B[insert_pos] << "\t[" << insert_pos << "]" << std::endl;
+
+            return ;
             // Insertar el valor en la posición correcta
-            chain_B.insert(chain_B.begin() + insert_pos, b_value);
+            chain_B.insert( chain_B.begin() + insert_pos, a_value - group_size + 1, a_value);
 
             if (j - 1 == prev) {
                 prev = limit;
@@ -181,16 +179,10 @@ void msi(std::deque<int>& stack, int start, int end, int size) {
         return;
     }
 
-    if (size > end) {
-        return;
-    }
-
     int actual_end = end;
 
-    if (end % 2 != 0) {
+    if (end % 2 != 0)
         end -= size;
-    }
-
 
     // 1. Pair swapping
     Stack_node* to_sort = new Stack_node[end / 2];
@@ -205,8 +197,6 @@ void msi(std::deque<int>& stack, int start, int end, int size) {
     delete[] to_sort;
 
     // 2. Rec
-    // printDeque(stack, size, "Post Pairswap");
-
     msi(stack, start, end, size * 2);
 
     // 3. Jacob
