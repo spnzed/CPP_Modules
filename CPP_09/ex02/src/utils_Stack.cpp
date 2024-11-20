@@ -1,45 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe_utils.cpp                                 :+:      :+:    :+:   */
+/*   utils_Stack.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 22:29:11 by aaronespino       #+#    #+#             */
-/*   Updated: 2024/11/19 18:40:33 by aaespino         ###   ########.fr       */
+/*   Created: 2024/11/20 15:15:46 by aaespino          #+#    #+#             */
+/*   Updated: 2024/11/20 15:26:30 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Códigos ANSI para colores
-#define RESET "\033[0m"
-#define BOLD "\033[1m"
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define CYAN "\033[36m"
-#define HIGHLIGHT "\033[1;41m" // Fondo rojo con texto en negrita
-#define MAGENTA "\033[35m"
+#include "../inc/PmergeMe.hpp"
 
+std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int side) {
+    std::deque<int> chain;
 
-#include <iostream>
-#include <deque>
-#include <vector>
-#include <cstdlib>
-
-struct Stack_node {
-    int left;
-    int right;
-};
-
-std::vector<int> jacobsthal(int n) {
-    std::vector<int> j(n);
-    if (n > 0) j[0] = 0 * 2;
-    if (n > 1) j[1] = 1 * 2;
-    for (int i = 2; i < n; ++i) {
-        j[i] = (j[i - 1] + 2 * j[i - 2]);
+    if (group_size > 0) {
+        if (side == 0) {
+            std::deque< int >::iterator it = stack.begin();
+            size_t pos = 0;
+            while ( pos + group_size <= stack.size() ) {
+                chain.insert( chain.end(), it + pos, it + pos + group_size );
+                pos += group_size * 2;
+            }
+        } else {
+            std::deque< int >::iterator it = stack.begin();
+            size_t pos = group_size;
+            while ( pos + group_size <= stack.size() ) {
+                chain.insert( chain.end(), it + pos, it + pos + group_size );
+                pos += group_size * 2;
+            }
+        }   
+    } else {
+        if (side == 0) {
+            for (int i = 0; i < end / 2; i++) {
+                chain.push_back(stack[i * 2]);
+            }
+        } else {
+            for (int i = 0; i < end / 2; i++) {
+                chain.push_back(stack[i * 2 + 1]);
+            }
+        }
     }
-    return j;
+
+    return chain;
+}
+
+std::deque<int> getInp(char **nums, int argc) {
+	
+	std::deque<int> main;
+
+	for (int i = 1; i < argc; i++) {
+		main.push_back(atoi(nums[ i ]));
+	}
+
+	return main;
 }
 
 int compRep(int target, char** set, int limit) {
@@ -70,32 +85,6 @@ int compArgs(char **argv, int argc) {
 		}
 	}
 	return 1;
-}
-
-std::deque<int> getInp(char **nums, int argc) {
-	
-	std::deque<int> main;
-
-	for (int i = 1; i < argc; i++) {
-		main.push_back(atoi(nums[ i ]));
-	}
-
-	return main;
-}
-
-int binarySearch(const std::deque<int>& chain, int start, int end, int value) {
-    int low = start;
-    int high = end;
-
-    while (low < high) {
-        int mid = (low + high) / 2;
-        if (chain[mid] <= value) {
-            low = mid + 1;
-        } else {
-            high = mid;
-        }
-    }
-    return low;
 }
 
 void printDeque(const std::deque<int>& stack, int size, const std::string& name) {
@@ -160,13 +149,3 @@ void printToSort(const Stack_node* to_sort, int size) {
         std::cout << "Left: " << it->left << ", Right: " << it->right << std::endl;
     }
 }
-
-// std::deque<int> pairSwap(std::deque<int> input) {
-
-// 	for (int i = 0; i < int(input.size() / 2); i++) {
-// 		if (input[ i * 2 + 1 ] < input[ i * 2 ])
-// 			std::swap(input[ i * 2 ], input[ i * 2 + 1]);
-// 	}
-
-// 	return input;
-// }

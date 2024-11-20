@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/10/28 14:17:45 by aaespino         ###   ########.fr        #
+#    Updated: 2024/11/20 15:32:21 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	= PmergeMe
 
 SRC_DIR = src/
 
-SRC		=	main.cpp PmergeMe.cpp
+SRC		=	main.cpp binary_search.cpp jacobsthal.cpp msi.cpp utils_Stack.cpp 
 
 OBJ_DIR = obj/
 
