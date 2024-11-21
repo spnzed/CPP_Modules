@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:19:24 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/20 18:39:45 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:23:23 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ static int	getIndex( double index, size_t groupSize ) {
 }
 
 int binarySearch(const std::deque<int>& chain, int end, int value, int size) {
-    int low = 0;
+    
+    int low = 1;
     int high = end;
-
-    int count = 0;
     int index = 0;
 
-    std::cout << value << std::endl; 
+    // printDeque(chain, size, "Binary");
 
     while (low < high) {
 
@@ -32,22 +31,19 @@ int binarySearch(const std::deque<int>& chain, int end, int value, int size) {
         if (value > chain[getIndex( mid, size )]) {
             if (mid < high)
                 low = mid + 1;
-            else
-                low = mid;
-        }
-        else {
+        } else {
             if (mid > low)
-                high = mid + 1;
+                high = mid - 1;
             else
                 high = low;
         }
-
     }
-    count++;
 
     if ( value < chain[ getIndex( low, size ) ] ) {
+        // std::cout<<"arriba"<<std::endl;
         index = getIndex( low, size ) - size + 1;
     } else {
+        // std::cout<<"abajo"<<std::endl;
         index = getIndex( high, size ) + 1;
     }
 

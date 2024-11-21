@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:16:09 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/20 17:50:08 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:00:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,38 @@ static std::deque<int> pairSwap(std::deque<int>& stack, int end, int group_size)
         to_sort[i].right = stack[i * 2 + 1];
     }
 
-    for (int i = 0; i + group_size < end; i += group_size * 2) {
-        // Si estamos comparando el último grupo que no llena el tamaño, no lo procesamos
-        if (i + group_size * 2 > end) break;
+    if (group_size == 1) {
+        for (int i = 0; i < end; ++i) {
+            if (to_sort[i].left > to_sort[i].right) {
+                std::swap(to_sort[i].left, to_sort[i].right);
+            }
+        }
+    } else {
+        group_size /= 2;
+        for (int i = 0; i < end; i += group_size) {
+            // Verificar que no nos salimos de los límites
+            if (i + group_size >= end) break;
 
-        // Comparar la última pareja de cada grupo
-        int rightmost_first_group = to_sort[i + group_size - 1].right;
-        int rightmost_second_group = to_sort[i + group_size * 2 - 1].right;
+            int rightmost_first_group = to_sort[i + group_size - 1].right;
+            int rightmost_second_group = to_sort[i + group_size].right;
 
-        // Si el valor 'right' del primer grupo es mayor, se intercambian las parejas
-        if (rightmost_first_group > rightmost_second_group) {
-            for (int j = 0; j < group_size; ++j) {
-                std::swap(to_sort[i + j], to_sort[i + group_size + j]);
+            // Intercambiar grupos si es necesario
+            if (rightmost_first_group > rightmost_second_group) {
+                for (int j = 0; j < group_size; ++j) {
+                    if (i + group_size + j >= end) break; // Verificar límites
+                    std::swap(to_sort[i + j], to_sort[i + group_size + j]);
+                }
             }
         }
     }
 
+    // Construir el resultado
     for (int i = 0; i < end; i++) {
         result.push_back(to_sort[i].left);
         result.push_back(to_sort[i].right);
     }
 
     delete[] to_sort;
-
     return result;
 }
 
@@ -55,7 +64,7 @@ void msi(std::deque<int>& stack, int start, int end, int size) {
         return;
     }
 
-    int actual_end = end;
+    // int actual_end = end;
 
     if (end % 2 != 0)
         end -= size;
@@ -63,10 +72,12 @@ void msi(std::deque<int>& stack, int start, int end, int size) {
     // 1. Pair swapping
     stack = pairSwap(stack, end / 2, size);
 
+    printDeque(stack, size, "MSI");
+
     // 2. Rec
     msi(stack, start, end, size * 2);
 
     // 3. Jacob
-    if (stack.size() / size >= 4)
-        insertWithJacobsthal(stack, actual_end, size);
+    // if (stack.size() / size >= 4)
+        // insertWithJacobsthal(stack, actual_end, size);
 }
