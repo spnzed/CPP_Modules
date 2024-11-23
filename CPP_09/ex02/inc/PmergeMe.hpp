@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:07:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/23 13:10:34 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:33:58 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void printToSort(const Stack_node* to_sort, int size);
 //                      ALGO
 
 // binary_search.cpp
+int littleBinarySearch(const std::deque<int>& chain, int end, int value);
 int binarySearch(const std::deque<int>& chain, int end, int value, int size);
 // jacobsthal.cpp
 void insertWithJacobsthal(std::deque<int>& stack, int end, int group_size);
