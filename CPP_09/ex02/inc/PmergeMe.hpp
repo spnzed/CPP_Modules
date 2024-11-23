@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:07:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/23 17:33:58 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:41:01 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <cstdlib>
 #include <deque>
 #include <vector>
+#include <ctime>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"

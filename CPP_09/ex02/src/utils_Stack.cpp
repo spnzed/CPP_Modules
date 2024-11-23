@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:15:46 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/20 15:26:30 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:36:20 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int compArgs(char **argv, int argc) {
 }
 
 void printDeque(const std::deque<int>& stack, int size, const std::string& name) {
-    // Título de la pila
+
     if (!name.empty()) {
         std::cout << BOLD << name << ". Size: " << size << RESET << std::endl;
     } else {
@@ -100,47 +100,45 @@ void printDeque(const std::deque<int>& stack, int size, const std::string& name)
         return;
     }
 
-    int count = 0;       // Contador dentro del grupo actual
-    int blockIndex = 1;  // Índice del bloque actual
+    int count = 0;
+    int blockIndex = 1;
     bool newGroup = true;
 
     for (std::deque<int>::const_iterator it = stack.begin(); it != stack.end(); ++it) {
         if (newGroup) {
             if (name == "Full Stack" && blockIndex == 5) {
-                std::cout << MAGENTA << "["; // Bloque 5 en magenta
+                std::cout << MAGENTA << "[";
             } else {
-                std::cout << BLUE << "["; // Otros bloques en azul
+                std::cout << BLUE << "[";
             }
             newGroup = false;
         }
 
-        // Verificar si es el último número del quinto bloque (solo para "Full Stack")
         std::deque<int>::const_iterator nextIt = it;
-        ++nextIt; // Avanzar manualmente el iterador
+        ++nextIt;
         if (name == "Full Stack" && blockIndex == 5 && (count + 1 == size || nextIt == stack.end())) {
-            std::cout << HIGHLIGHT << *it << RESET; // Último número llamativo
+            std::cout << HIGHLIGHT << *it << RESET;
         } else {
-            std::cout << GREEN << *it << RESET; // Otros números en verde
+            std::cout << GREEN << *it << RESET;
         }
 
         ++count;
 
-        // Determina si cerrar el grupo actual
         if (count == size || nextIt == stack.end()) {
             if (name == "Full Stack" && blockIndex == 5) {
-                std::cout << MAGENTA << "] " << RESET; // Cierra el quinto bloque en magenta
+                std::cout << MAGENTA << "] " << RESET;
             } else {
-                std::cout << BLUE << "] " << RESET; // Cierra otros bloques en azul
+                std::cout << BLUE << "] " << RESET;
             }
-            count = 0; // Reinicia el contador
+            count = 0;
             newGroup = true;
-            ++blockIndex; // Incrementa el índice del bloque
+            ++blockIndex;
         } else {
-            std::cout << YELLOW << ", " << RESET; // Separador en amarillo
+            std::cout << YELLOW << ", " << RESET;
         }
     }
 
-    std::cout << std::endl; // Salto de línea al final para mejorar legibilidad
+    std::cout << std::endl;
 }
 
 void printToSort(const Stack_node* to_sort, int size) {

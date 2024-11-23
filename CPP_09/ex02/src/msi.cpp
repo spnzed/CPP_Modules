@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:16:09 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/23 13:15:15 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:38:10 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ static void	pairSwap( std::deque< int >& src, size_t groupSize ) {
 			std::swap_ranges( first - groupSize + 1, first + 1, second - groupSize + 1);
 		tail += groupSize * 2;
 	}
-
 }
 
 void msi(std::deque<int>& stack, int end, int size) {
 
-    // Caso base: si el segmento tiene un solo elemento o está vacío
     if (size > end) {
         return;
     }
@@ -40,8 +38,6 @@ void msi(std::deque<int>& stack, int end, int size) {
 
     // 1. Pair swapping
     pairSwap(stack, size);
-
-    // printDeque(stack, size, "MSI");
 
     // 2. Rec
     msi(stack, end, size * 2);

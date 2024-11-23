@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/23 13:10:25 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:43:38 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,22 @@
 
 void algo(char **nums, int argc) {
 
-    std::deque<int> stack = getInp(nums, argc);
-    int to_sort_size = stack.size();
+    std::deque<int> dequeStack = getInp(nums, argc);
+    int to_sort_size = dequeStack.size();
 
-    msi(stack, to_sort_size, 1);
+    clock_t	start;
+	clock_t	end;
+
+	printDeque( dequeStack, 1, "Before" );
+
+	start = std::clock();
+    msi(dequeStack, to_sort_size, 1);
+	end = std::clock();
+
+	double	dequeTime = static_cast< double >( end - start ) * 1000000 / CLOCKS_PER_SEC;
+	printDeque( dequeStack, 1, "After" );
+
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::[deque] : " << dequeTime << " us" << std::endl;
 }
 
 int main (int argc, char **argv) {
