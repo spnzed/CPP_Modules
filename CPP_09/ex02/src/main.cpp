@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 16:18:31 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/20 15:43:17 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/23 13:10:25 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void algo(char **nums, int argc) {
     std::deque<int> stack = getInp(nums, argc);
     int to_sort_size = stack.size();
 
-    msi(stack, 0, to_sort_size, 1);
+    msi(stack, to_sort_size, 1);
 }
 
 int main (int argc, char **argv) {
