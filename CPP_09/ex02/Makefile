@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/11/20 15:32:21 by aaespino         ###   ########.fr        #
+#    Updated: 2024/11/25 19:54:50 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,11 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
 
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -fsanitize=address -g
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -g -O2
 RM		= rm -f
 INCLUDE = -I ./
+
+SIZE ?= 1000
 
 #			RULES
 
@@ -50,9 +52,12 @@ fclean:	clean
 
 re: fclean $(NAME)
 
+run: all
+	./$(NAME) `shuf -i 1-$(SIZE) -n $(SIZE) | tr "\n" " "`
+
 valgrind: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) `shuf -i 1-$(SIZE) -n $(SIZE) | tr "\n" " "`
 
 -include $(DEP)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run valgrind

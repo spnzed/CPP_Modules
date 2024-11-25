@@ -6,7 +6,7 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:16:09 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/23 18:38:10 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/25 19:49:39 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static void	pairSwap( std::deque< int >& src, size_t groupSize ) {
 
 void msi(std::deque<int>& stack, int end, int size) {
 
+    // std::cout << ">> MSI IN" << std::endl;
     if (size > end) {
+        // std::cout << ">> MSI OUT SIZE" << std::endl;
         return;
     }
 
@@ -39,10 +41,17 @@ void msi(std::deque<int>& stack, int end, int size) {
     // 1. Pair swapping
     pairSwap(stack, size);
 
+    // std::cout << BLUE;
+    // printDeque(stack, size, "After ps");
+    // std::cout << RESET;
+
     // 2. Rec
     msi(stack, end, size * 2);
+    // std::cout << ">> MSI CONTINUE" << std::endl;
 
+    // std::cout << "GROUPS: " << stack.size() / size << std::endl;
     // 3. Jacob
-    if (stack.size() / size >= 4)
+    if (stack.size() / size > 2)
         insertWithJacobsthal(stack, actual_end, size);
+    // std::cout << ">> MSI OUT" << std::endl;
 }
