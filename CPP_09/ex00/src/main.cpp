@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:19:28 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/26 17:01:04 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/26 17:05:33 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int main (int argc, char **argv) {
         std::cout << "Error: could not open file." << std::endl;
     } else {
         std::multimap<std::string, float> data = makeData();
-        btc.makeInput(&btc, argv[1]);
-        btc.printOutput(&btc, &data);
+        btc.makeInput(argv[1]);
+        btc.printOutput(&data);
     }
     return 0;
 }

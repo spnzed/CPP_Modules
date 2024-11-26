@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:13:53 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/26 17:00:35 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/26 17:07:02 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class Bitcoin {
         Bitcoin(const Bitcoin & a);
         Bitcoin &operator=(const Bitcoin & a);
         
-        void makeInput(Bitcoin *btc, std::string f);
-        void printOutput(Bitcoin *btc, std::multimap<std::string, float> *data);
+        void makeInput(std::string f);
+        void printOutput(std::multimap<std::string, float> *data);
 
     private:
         std::multimap <std::string, float> _logs;

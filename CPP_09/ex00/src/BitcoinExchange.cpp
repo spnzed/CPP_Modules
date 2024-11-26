@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:55:23 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/26 17:01:18 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/26 17:06:49 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ float Bitcoin::exchangeRate(std::multimap<std::string, float> *data, const std::
     return ret;
 }
 
-void Bitcoin::makeInput(Bitcoin *btc, std::string f) {
+void Bitcoin::makeInput(std::string f) {
     std::ifstream is(f.c_str());
 
     // std::multimap<std::string, float> ret;
@@ -219,13 +219,13 @@ void Bitcoin::makeInput(Bitcoin *btc, std::string f) {
 
         char *end;
         val = std::strtof(val_s.c_str(), &end);
-        btc->_logs.insert(std::make_pair(row, val));
+        this->_logs.insert(std::make_pair(row, val));
     }
     is.close();
 }
 
-void Bitcoin::printOutput(Bitcoin *btc, std::multimap<std::string, float> *data) {
-    for (std::multimap<std::string, float>::iterator it = btc->_logs.begin(); it != btc->_logs.end(); ++it) {
+void Bitcoin::printOutput(std::multimap<std::string, float> *data) {
+    for (std::multimap<std::string, float>::iterator it = this->_logs.begin(); it != this->_logs.end(); ++it) {
         if (it->first != "date ") {
             if (compDate(it->first)) {;}
             else if (compValue(it->second)) {;}
