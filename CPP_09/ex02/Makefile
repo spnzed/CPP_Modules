@@ -16,7 +16,9 @@ NAME	= PmergeMe
 
 SRC_DIR = src/
 
-SRC		=	main.cpp binary_search.cpp jacobsthal.cpp msi.cpp utils_Stack.cpp 
+SRC		=	main.cpp argUtils.cpp														\
+			dequeBinarySearch.cpp dequeJacobSthal.cpp dequeMSI.cpp dequeUtils.cpp 		\
+			vectorBinarySearch.cpp vectorJacobSthal.cpp vectorMSI.cpp vectorUtils.cpp 	\
 
 OBJ_DIR = obj/
 

@@ -27,11 +27,8 @@ static void	pairSwap( std::deque< int >& src, size_t groupSize ) {
 
 void msi(std::deque<int>& stack, int end, int size) {
 
-    // std::cout << ">> MSI IN" << std::endl;
-    if (size > end) {
-        // std::cout << ">> MSI OUT SIZE" << std::endl;
+    if (size > end)
         return;
-    }
 
     int actual_end = end;
 
@@ -41,17 +38,10 @@ void msi(std::deque<int>& stack, int end, int size) {
     // 1. Pair swapping
     pairSwap(stack, size);
 
-    // std::cout << BLUE;
-    // printDeque(stack, size, "After ps");
-    // std::cout << RESET;
-
     // 2. Rec
     msi(stack, end, size * 2);
-    // std::cout << ">> MSI CONTINUE" << std::endl;
 
-    // std::cout << "GROUPS: " << stack.size() / size << std::endl;
     // 3. Jacob
     if (stack.size() / size > 2)
         insertWithJacobsthal(stack, actual_end, size);
-    // std::cout << ">> MSI OUT" << std::endl;
 }

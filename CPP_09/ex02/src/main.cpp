@@ -26,6 +26,20 @@ bool    isSorted( std::deque<int> & og, std::deque<int> & dq )
     return true;
 }
 
+bool    isSorted( std::vector<int> & og, std::vector<int> & vec )
+{
+    std::sort(og.begin(), og.end());
+      
+    std::vector<int>::iterator ogIt = og.begin();
+    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
+    {
+        if (*it != *ogIt)
+            return false;
+        ++ogIt;
+    }
+    return true;
+}
+
 template <typename T>
 static void printSimpleDeque(const std::deque<T>& dq) {
     typename std::deque<T>::const_iterator it;
@@ -37,28 +51,41 @@ static void printSimpleDeque(const std::deque<T>& dq) {
 
 void algo(char **nums, int argc) {
 
-    std::deque<int> dequeStack = getInp(nums, argc);
-    int to_sort_size = dequeStack.size();
-    std::deque<int> ogStack(dequeStack);
+    std::deque<int> dequeStack = getDeque(nums, argc);
+    std::vector<int> vectorStack = getVector(nums, argc);
 
-    clock_t	start;
-	clock_t	end;
+    std::deque<int> ogDeque(dequeStack);
+    std::vector<int> ogVector(vectorStack);
 
-	// printDeque( dequeStack, 1, "Before" );
+    clock_t	start_dq;
+	clock_t	end_dq;
 
-	start = std::clock();
-    msi(dequeStack, to_sort_size, 1);
-	end = std::clock();
+    clock_t	start_vec;
+	clock_t	end_vec;
 
-	double	dequeTime = static_cast< double >( end - start ) * 1000000 / CLOCKS_PER_SEC;
-	// printDeque( dequeStack, 1, "After" );
-    // printDeque(dequeStack, 2, "misco");
-    if (isSorted(ogStack, dequeStack))
+	start_dq = std::clock();
+    msi(dequeStack, dequeStack.size(), 1);
+	end_dq = std::clock();
+	
+    start_vec = std::clock();
+    msi(vectorStack, vectorStack.size(), 1);
+	end_vec = std::clock();
+
+	double	dequeTime = static_cast< double >( end_dq - start_dq ) * 1000000 / CLOCKS_PER_SEC;
+	double	vectorTime = static_cast< double >( end_vec - start_vec ) * 1000000 / CLOCKS_PER_SEC;
+
+    if (isSorted(ogDeque, dequeStack))
         std::cout << GREEN BOLD << "DEQUE IS SORTED" << RESET << std::endl;
     else
         std::cout << RED BOLD << "DEQUE IS NOT SORTED" << RESET << std::endl;
 
+    if (isSorted(ogVector, vectorStack))
+        std::cout << GREEN BOLD << "VECTOR IS SORTED" << RESET << std::endl;
+    else
+        std::cout << RED BOLD << "VECTOR IS NOT SORTED" << RESET << std::endl;
+
     std::cout << "Time to process a range of " << argc - 1 << " elements with std::[deque] : " << dequeTime << " us" << std::endl;
+    std::cout << "Time to process a range of " << argc - 1 << " elements with std::[vector] : " << vectorTime << " us" << std::endl;
 }
 
 int main (int argc, char **argv) {

@@ -44,20 +44,20 @@ struct Stack {
 };
 
 //                      MANIPULACION DE STACK
-//  utils_Stack.cpp
-
-// Funciones relacionadas con la manipulación de cadenas
-std::deque<int> getInp(char **nums, int argc);
-std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int side);
 // Funciones relacionadas con la comparación
 int compArgs(char **argv, int argc);
 int compRep(int target, char** set, int limit);
+
+//                      DEQUE
+
+// Funciones relacionadas con la manipulación de cadenas
+std::deque<int> getDeque(char **nums, int argc);
+std::deque<int> getStack(std::deque<int>& stack, int end, int group_size, int side);
 // Funciones de impresión
 void printDeque(const std::deque<int>& stack, int size, const std::string& name);
 void printToSort(const Stack_node* to_sort, int size);
 
 //                      ALGO
-
 // binary_search.cpp
 int littleBinarySearch(const std::deque<int>& chain, int end, int value);
 int binarySearch(const std::deque<int>& chain, int end, int value, int size);
@@ -65,5 +65,23 @@ int binarySearch(const std::deque<int>& chain, int end, int value, int size);
 void insertWithJacobsthal(std::deque<int>& stack, int end, int group_size);
 // msi.cpp
 void msi(std::deque<int>& stack, int end, int size);
+
+//                      DEQUE
+
+// Funciones relacionadas con la manipulación de cadenas
+std::vector<int> getVector(char **nums, int argc);
+std::vector<int> getStack(std::vector<int>& stack, int end, int group_size, int side);
+// Funciones de impresión
+void printVector(const std::vector<int>& stack, int size, const std::string& name);
+void printToSort(const Stack_node* to_sort, int size);
+
+//                      ALGO
+// binary_search.cpp
+int littleBinarySearch(const std::vector<int>& chain, int end, int value);
+int binarySearch(const std::vector<int>& chain, int end, int value, int size);
+// jacobsthal.cpp
+void insertWithJacobsthal(std::vector<int>& stack, int end, int group_size);
+// msi.cpp
+void msi(std::vector<int>& stack, int end, int size);
 
 #endif
