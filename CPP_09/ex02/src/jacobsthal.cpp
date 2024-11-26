@@ -68,7 +68,7 @@ static void big_size(std::deque<int>& stack, std::deque<int>& chain_B, std::vect
         // std::cout << "Limit = " << limit << std::endl;
         // std::cout << "Prev = " << prev << std::endl;
         // std::cout << "End = " << end << std::endl;
-        size_t insertions = 0;
+        // size_t insertions = 0;
         for (int j = limit - 1; j > prev && j <= end; j -= (group_size * 2)) {
             
             int a_value = stack[j + group_size];
@@ -90,7 +90,7 @@ static void big_size(std::deque<int>& stack, std::deque<int>& chain_B, std::vect
             // std::cout << "At position: " << *(chain_B.begin() + insert_pos) << std::endl;
 
             chain_B.insert(chain_B.begin() + insert_pos, first, second);
-            insertions++;
+            // insertions++;
 
             if (j - (group_size * 2) <= prev) 
                 prev = limit;
