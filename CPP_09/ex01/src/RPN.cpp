@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:07:47 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/26 18:01:53 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/26 18:18:50 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void RPN::doRPN(void) {
             nums.push_back(tmp._content - '0');
         } else {
             if (nums.size() < 2) {
-                throw std::runtime_error("Not enough numbers");
+                throw std::runtime_error("Not enough operators");
             } else {
                 int s = nums.back(); nums.pop_back();
                 int f = nums.back(); nums.pop_back();

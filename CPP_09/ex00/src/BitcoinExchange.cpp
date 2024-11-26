@@ -6,7 +6,7 @@
 /*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:55:23 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/26 17:06:49 by aaronespino      ###   ########.fr       */
+/*   Updated: 2024/11/26 17:18:47 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ Bitcoin::Bitcoin(const Bitcoin & a) {
 }
 
 Bitcoin& Bitcoin::operator=(const Bitcoin & a) {
-    _logs = a._logs;
+
+    if ( this != &a ) {
+        _logs = a._logs;
+    }
     return *this;
 }
 
