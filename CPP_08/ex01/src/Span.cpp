@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:16:48 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/21 16:06:35 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:10:50 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Span::~Span(void) {
 }
 
 Span& Span::operator=(const Span &a) {
-    if (this == &a) {
+    if (this != &a) {
         this->_limit = a._limit;
         this->_total_span = a._total_span;
         this->_total_added = a._total_added;
