@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aaronespinosa <aaronespinosa@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:06:26 by aaespino          #+#    #+#             */
-/*   Updated: 2024/10/21 16:12:55 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:25:47 by aaronespino      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
