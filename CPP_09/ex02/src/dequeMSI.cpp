@@ -6,22 +6,31 @@
 /*   By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:16:09 by aaespino          #+#    #+#             */
-/*   Updated: 2024/11/25 19:49:39 by aaespino         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:20:41 by aaespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/PmergeMe.hpp"
 
-static void	pairSwap( std::deque< int >& src, size_t groupSize ) {
-	size_t	tail = groupSize - 1;
-
-	while ( tail + groupSize < src.size() ) {
-		std::deque< int >::iterator	first = src.begin() + tail;
-		std::deque< int >::iterator	second = src.begin() + tail + groupSize;
-
-		if ( *first > *second )
-			std::swap_ranges( first - groupSize + 1, first + 1, second - groupSize + 1);
-		tail += groupSize * 2;
+static void	pairSwap(std::deque< int >& src, int groupSize) {
+	
+	int	right = groupSize - 1;
+	
+	while (right + groupSize < int(src.size())) {
+		std::deque< int >::iterator	first = src.begin();
+		std::advance(first, right);
+		std::deque< int >::iterator	second = src.begin();
+		std::advance(second, right + groupSize);
+		
+		if (*first > *second) {
+			std::deque< int >::iterator	trueFirst = src.begin();
+			std::advance(trueFirst, right - groupSize + 1);
+			std::deque< int >::iterator	trueSecond = src.begin();
+			std::advance(trueSecond, right + 1);
+			std::advance(first, 1);
+			std::swap_ranges(trueFirst, first, trueSecond); 
+		}
+		right += groupSize * 2;
 	}
 }
 

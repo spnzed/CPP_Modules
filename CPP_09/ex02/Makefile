@@ -6,7 +6,7 @@
 #    By: aaespino <aaespino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 22:46:30 by aaronespino       #+#    #+#              #
-#    Updated: 2024/11/25 19:54:50 by aaespino         ###   ########.fr        #
+#    Updated: 2024/11/27 15:25:54 by aaespino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 DEP = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.d))
 
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -g -O2
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -pedantic -g -O2 #-fsanitize=address
 RM		= rm -f
 INCLUDE = -I ./
 
